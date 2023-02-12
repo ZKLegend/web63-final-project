@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.large-button {
+    background-color: #8DD3BB;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height:48px;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.search-poster {
+    height: 537px;
+    border: 1px solid black;
+}
+
+/* Search Container Style */
+.search-container {
+    position: relative;
+    top: -70px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 16px rgba(141, 211, 187, 0.15);
+border-radius: 16px;
+padding: 16px 32px 32px;
+
+}
+
+.label-text {
+    position: absolute;
+    top: -25%;
+    left: 8px;
+    z-index: 1;
+    padding: 0 4px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.tab-items {
+    margin-top: 20px;
+}
+
+
+/* Hotel Search Style */
+.hotel-search {
+    position: relative
+}
+
+.hotel-search-content {
+    padding: 0 24px;
+}
+
+.hotel-listing {
+    padding: 0 24px;
+}
