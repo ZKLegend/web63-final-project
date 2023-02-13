@@ -1,62 +1,74 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  width: 1440px;
+  margin: auto;
 }
 
+/* General Style */
 .large-button {
-    background-color: #8DD3BB;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    height:48px;
-    justify-content: center;
-    font-weight: 500;
+  background-color: #8dd3bb;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  justify-content: center;
+  font-weight: 500;
 }
 
 .search-poster {
-    height: 537px;
-    border: 1px solid black;
+  height: 537px;
+  border: 1px solid black;
 }
 
-/* Search Container Style */
+/* Search Tab Style */
 .search-container {
-    position: relative;
-    top: -70px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 16px rgba(141, 211, 187, 0.15);
-border-radius: 16px;
-padding: 16px 32px 32px;
-
+  position: relative;
+  top: -70px;
+  background: #ffffff;
+  box-shadow: 0px 4px 16px rgba(141, 211, 187, 0.15);
+  border-radius: 16px;
+  padding: 16px 32px 32px;
 }
 
 .label-text {
-    position: absolute;
-    top: -25%;
-    left: 8px;
-    z-index: 1;
-    padding: 0 4px;
-    background-color: white;
-    font-size: 14px;
+  position: absolute;
+  top: -25%;
+  left: 8px;
+  z-index: 1;
+  padding: 0 4px;
+  background-color: white;
+  font-size: 14px;
 }
 
 .tab-items {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
+.hidden-button {
+  width: 100%;
+  padding: 0;
+  height: 48px;
+  color: black;
+}
 
-/* Hotel Search Style */
+.show-result-button-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+/* Hotel Search Page Style */
 .hotel-search {
-    position: relative
+  position: relative;
 }
 
 .hotel-search-content {
-    padding: 0 24px;
+  padding: 0 104px;
 }
 
+/* Hotel Listing Page Style */
 .hotel-listing {
-    padding: 0 24px;
+  padding: 0 104px;
 }

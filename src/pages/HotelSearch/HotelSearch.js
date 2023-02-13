@@ -13,6 +13,7 @@ const { Title } = Typography;
 const HotelSearch = () => {
   return (
     <div className="hotel-search">
+      {/* Poster Section */}
       <Row
         style={{
           position: "absolute",
@@ -33,16 +34,18 @@ const HotelSearch = () => {
         </Col>
       </Row>
       <img style={{ width: "100%" }} alt="error" src={hotelSearchPoster} />
+
+      {/* Content Section */}
       <div className="hotel-search-content">
         <SearchTab />
         <Row gutter={[0, 80]}>
-          <Col offset={2} span={20} style={{ width: "100%" }}>
+          <Col span={24} style={{ width: "100%" }}>
             <RecentSearch />
           </Col>
-          <Col offset={2} span={20}>
+          <Col span={24}>
             <FallIntoTravel />
           </Col>
-          <Col offset={2} span={20} style={{ width: "100%" }}>
+          <Col span={24} style={{ width: "100%" }}>
             <FlightIntoTravel />
           </Col>
         </Row>

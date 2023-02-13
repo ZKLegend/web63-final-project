@@ -17,7 +17,8 @@ const flightOptions = [
   { value: "China", label: "China" },
 ];
 
-const FlightSearch = () => {
+// Export Flight Search Bar Component
+export function FlightSearchBar() {
   const [countPassenger, setCountPassenger] = useState(0);
   const [open, setOpen] = useState(false);
   const [classTicket, setClassTicket] = useState("Economy");
@@ -36,110 +37,107 @@ const FlightSearch = () => {
     setClassTicket(value);
     console.log(value);
   };
+  return (
+    <>
+      <Col span={4}>
+        <div
+          style={{
+            position: "relative",
+          }}
+        >
+          <span className="label-text">From</span>
+          <Select
+            size="large"
+            style={{ width: "100%" }}
+            showSearch
+            value="Hanoi"
+            options={flightOptions}
+            filterOption={(input, option) =>
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+            }
+          />
+        </div>
+      </Col>
+      <Col span={4}>
+        <div style={{ position: "relative" }}>
+          <span className="label-text">To</span>
+          <Select
+            size="large"
+            style={{ width: "100%" }}
+            showSearch
+            value="Ho Chi Minh City"
+            options={flightOptions}
+            filterOption={(input, option) =>
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+            }
+          />
+        </div>
+      </Col>
+      <Col span={4}>
+        <div style={{ position: "relative" }}>
+          <span className="label-text">Trip</span>
+          <Select
+            size="large"
+            style={{ width: "100%" }}
+            value="One-way"
+            options={[
+              { value: "Round-trip", label: "Round-trip" },
+              { value: "One-way", label: "One-way" },
+            ]}
+          />
+        </div>
+      </Col>
+      <Col span={6}>
+        <div style={{ position: "relative" }}>
+          <span className="label-text">Depart - Return</span>
+          <RangePicker size="large" />
+        </div>
+      </Col>
+      <Col span={6}>
+        <div style={{ position: "relative" }}>
+          <span className="label-text">Passenger - Class</span>
+          <Select
+            size="large"
+            value={`${countPassenger} Passenger, ${classTicket}`}
+            open={open}
+            onDropdownVisibleChange={(visible) => setOpen(visible)}
+            dropdownRender={() => (
+              <PassengerClassDropDown
+                setCountPassenger={setCountPassenger}
+                countPassenger={countPassenger}
+                increasePassenger={increasePassenger}
+                decreasePassenger={decreasePassenger}
+                selectClass={selectClass}
+                setOpen={setOpen}
+              />
+            )}
+            style={{ width: "100%" }}
+          />
+        </div>
+      </Col>
+    </>
+  );
+}
 
+const FlightSearch = () => {
   return (
     <div className="flight-search tab-items">
       <Form>
         <Row gutter={[16, 24]}>
-          <Col span={4}>
-            <div
-              style={{
-                position: "relative",
-              }}
-            >
-              <span className="label-text">From</span>
-              <Select
-                size="large"
-                style={{ width: "100%" }}
-                showSearch
-                value="Hanoi"
-                options={flightOptions}
-                filterOption={(input, option) =>
-                  (option?.label ?? "")
-                    .toLowerCase()
-                    .includes(input.toLowerCase())
-                }
-              />
-            </div>
-          </Col>
-          <Col span={4}>
-            <div style={{ position: "relative" }}>
-              <span className="label-text">To</span>
-              <Select
-                size="large"
-                style={{ width: "100%" }}
-                showSearch
-                value="Ho Chi Minh City"
-                options={flightOptions}
-                filterOption={(input, option) =>
-                  (option?.label ?? "")
-                    .toLowerCase()
-                    .includes(input.toLowerCase())
-                }
-              />
-            </div>
-          </Col>
-          <Col span={4}>
-            <div style={{ position: "relative" }}>
-              <span className="label-text">Trip</span>
-              <Select
-                size="large"
-                style={{ width: "100%" }}
-                value="One-way"
-                options={[
-                  { value: "Round-trip", label: "Round-trip" },
-                  { value: "One-way", label: "One-way" },
-                ]}
-              />
-            </div>
-          </Col>
-          <Col span={6}>
-            <div style={{ position: "relative" }}>
-              <span className="label-text">Depart - Return</span>
-              <RangePicker size="large" />
-            </div>
-          </Col>
-          <Col span={6}>
-            <div style={{ position: "relative" }}>
-              <span className="label-text">Passenger - Class</span>
-              <Select
-                size="large"
-                value={`${countPassenger} Passenger, ${classTicket}`}
-                open={open}
-                onDropdownVisibleChange={(visible) => setOpen(visible)}
-                dropdownRender={() => (
-                  <PassengerClassDropDown
-                    setCountPassenger={setCountPassenger}
-                    countPassenger={countPassenger}
-                    increasePassenger={increasePassenger}
-                    decreasePassenger={decreasePassenger}
-                    selectClass={selectClass}
-                    setOpen={setOpen}
-                  />
-                )}
-                style={{ width: "100%" }}
-              />
-            </div>
-          </Col>
+          <FlightSearchBar />
+
+          {/* Add Code and Show Submit Form Button */}
           <Col span={3} offset={18}>
             <div>
               {" "}
-              <Button
-                style={{ width: "100%", padding: "0", height: "48px" }}
-                type="link"
-              >
+              <Button className="hidden-button" type="link">
                 <PlusOutlined />
                 Add Promo Code
               </Button>
             </div>
           </Col>
           <Col span={3}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row-reverse",
-              }}
-            >
+            <div className="show-result-button-container">
               <Button className="large-button">
                 <svg
                   width="14"

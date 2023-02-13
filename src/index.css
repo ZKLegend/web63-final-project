@@ -1,0 +1,5 @@
+@font-face {
+  font-family: "TradeGothicExtended";
+  src: local("TradeGothicExtended"),
+    url("./fonts/Trade-Gothic/Trade-Gothic-LT-Extended.ttf"), format("truetype");
+}

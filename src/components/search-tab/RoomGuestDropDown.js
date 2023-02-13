@@ -18,26 +18,17 @@ const RoomGuestDropDown = ({
 }) => {
   return (
     <div className="passenger-class-drop-down">
-      <Row>
+      <Row gutter={[0, 16]}>
         <Col
           span={12}
           style={{
-            border: "1px solid black",
             display: "flex",
             alignItems: "center",
           }}
         >
           <Text>Rooms</Text>
         </Col>
-        <Col
-          span={12}
-          style={{
-            border: "1px solid black",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Col span={12}>
           <Button
             type="text"
             icon={<MinusOutlined />}
@@ -53,22 +44,13 @@ const RoomGuestDropDown = ({
         <Col
           span={12}
           style={{
-            border: "1px solid black",
             display: "flex",
             alignItems: "center",
           }}
         >
           <Text>Guests</Text>
         </Col>
-        <Col
-          span={12}
-          style={{
-            border: "1px solid black",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <Col span={12}>
           <Button
             type="text"
             icon={<MinusOutlined />}
@@ -85,7 +67,6 @@ const RoomGuestDropDown = ({
         <Col
           span={24}
           style={{
-            border: "1px solid black",
             display: "flex",
             justifyContent: "center",
           }}

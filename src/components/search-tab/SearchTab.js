@@ -55,7 +55,7 @@ const SearchTab = () => {
   return (
     <div className="search-tab">
       <Row justify="center">
-        <Col span={20} className="search-container">
+        <Col span={24} className="search-container">
           <Tabs defaultActiveKey="2" items={items} />
         </Col>
       </Row>

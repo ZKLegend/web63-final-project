@@ -14,7 +14,7 @@ const HotelListing = () => {
       {/* Search Bar Section */}
       <Row justify="center">
         <Col
-          span={20}
+          span={24}
           style={{
             display: "flex",
             background: "#FFFFFF",
@@ -44,7 +44,7 @@ const HotelListing = () => {
 
       <Row>
         {/* Filter Component */}
-        <Col offset={2} span={6}>
+        <Col span={8}>
           <ResultFilter />
         </Col>
         <Col span={1} style={{ display: "flex", justifyContent: "center" }}>
@@ -53,7 +53,7 @@ const HotelListing = () => {
         </Col>
 
         {/* Search Result Component */}
-        <Col span={13} style={{ border: "1px solid black" }}>
+        <Col span={15} style={{ border: "1px solid black" }}>
           <SearchResult />
         </Col>
       </Row>

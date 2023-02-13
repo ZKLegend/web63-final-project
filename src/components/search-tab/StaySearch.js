@@ -113,29 +113,21 @@ export function StaySearchBar() {
 
 const StaySearch = () => {
   return (
-    <div className="flight-search tab-items">
+    <div className="stay-search tab-items">
       <Form>
         <Row gutter={[16, 24]}>
           <StaySearchBar />
           <Col span={3} offset={18}>
             <div>
               {" "}
-              <Button
-                style={{ width: "100%", padding: "0", height: "48px" }}
-                type="link"
-              >
+              <Button className="hidden-button" type="link">
                 <PlusOutlined />
                 Add Promo Code
               </Button>
             </div>
           </Col>
           <Col span={3}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row-reverse",
-              }}
-            >
+            <div className="show-result-button-container">
               <Button className="large-button">
                 <svg
                   width="14"
