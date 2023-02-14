@@ -1,7 +1,7 @@
 import { Row, Col, Divider, Button } from "antd";
 import React from "react";
 
-import "../../style.css";
+import "../../app.css";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { StaySearchBar } from "../../components/search-tab/StaySearch";
