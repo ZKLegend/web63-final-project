@@ -1,4 +1,3 @@
-import "../../app.css";
 import React from "react";
 import { Tabs, Row, Col } from "antd";
 

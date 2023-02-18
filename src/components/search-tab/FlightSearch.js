@@ -1,4 +1,3 @@
-import "../../app.css";
 import React from "react";
 import { useState } from "react";
 
@@ -126,7 +125,7 @@ const FlightSearch = () => {
         <Row gutter={[16, 24]}>
           <FlightSearchBar />
 
-          {/* Add Code and Show Submit Form Button */}
+          {/*  Button add promo code and show bubmit Form */}
           <Col span={3} offset={18}>
             <div>
               {" "}

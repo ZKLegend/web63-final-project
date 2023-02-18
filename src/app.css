@@ -7,6 +7,50 @@ body {
   margin: auto;
 }
 
+.content {
+  padding: 0 104px;
+}
+
+/* General Text Style */
+.montserrat-regular {
+  font-family: "MontserratRegular";
+}
+
+.montserrat-regular-12px {
+  font-family: "MontserratRegular";
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.montserrat-semibold {
+  font-family: "MontserratSemiBold";
+}
+
+.montserrat-semibold-16px {
+  font-family: "MontserratSemiBold";
+  font-size: 16px;
+}
+
+.montserrat-bold {
+  font-family: "MontserratBold";
+}
+
+.montserrat-bold-12px {
+  font-family: "MontserratBold";
+  font-size: 12px;
+}
+
+.montserrat-bold-24px {
+  font-family: "MontserratBold";
+  font-size: 24px;
+}
+
+.trade-gothic-bold {
+  font-family: "TradeGothicBold";
+  font-size: 24px;
+  line-height: 25px;
+}
+
 /* General Style */
 .large-button {
   background-color: #8dd3bb;
@@ -16,11 +60,6 @@ body {
   height: 48px;
   justify-content: center;
   font-weight: 500;
-}
-
-.search-poster {
-  height: 537px;
-  border: 1px solid black;
 }
 
 /* Search Tab Style */
@@ -57,18 +96,4 @@ body {
 .show-result-button-container {
   display: flex;
   flex-direction: row-reverse;
-}
-
-/* Hotel Search Page Style */
-.hotel-search {
-  position: relative;
-}
-
-.hotel-search-content {
-  padding: 0 104px;
-}
-
-/* Hotel Listing Page Style */
-.hotel-listing {
-  padding: 0 104px;
 }

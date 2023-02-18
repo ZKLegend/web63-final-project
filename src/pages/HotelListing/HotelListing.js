@@ -1,8 +1,6 @@
 import { Row, Col, Divider, Button } from "antd";
 import React from "react";
 
-import "../../app.css";
-
 import { SearchOutlined } from "@ant-design/icons";
 import { StaySearchBar } from "../../components/search-tab/StaySearch";
 import ResultFilter from "./components/ResultFilter";
@@ -12,7 +10,7 @@ const HotelListing = () => {
   return (
     <div className="hotel-listing">
       {/* Search Bar Section */}
-      <Row justify="center">
+      <Row justify="center" style={{ marginBottom: "32px" }}>
         <Col
           span={24}
           style={{
@@ -44,16 +42,18 @@ const HotelListing = () => {
 
       <Row>
         {/* Filter Component */}
-        <Col span={8}>
+        <Col style={{ width: "343px" }}>
           <ResultFilter />
         </Col>
-        <Col span={1} style={{ display: "flex", justifyContent: "center" }}>
+        <Col
+          style={{ display: "flex", justifyContent: "center", width: "48px" }}
+        >
           {" "}
           <Divider style={{ height: "100%", margin: "0" }} type="vertical" />
         </Col>
 
         {/* Search Result Component */}
-        <Col span={15} style={{ border: "1px solid black" }}>
+        <Col style={{ width: "840px" }}>
           <SearchResult />
         </Col>
       </Row>
