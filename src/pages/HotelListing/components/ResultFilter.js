@@ -10,8 +10,6 @@ import {
   ConfigProvider,
 } from "antd";
 
-import "../style.css";
-
 const { Title } = Typography;
 
 const freebies = [

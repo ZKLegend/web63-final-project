@@ -6,6 +6,8 @@ import { StaySearchBar } from "../../components/search-tab/StaySearch";
 import ResultFilter from "./components/ResultFilter";
 import SearchResult from "./components/SearchResult";
 
+import "./index.css";
+
 const HotelListing = () => {
   return (
     <div className="hotel-listing">

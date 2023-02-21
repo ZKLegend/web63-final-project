@@ -8,6 +8,8 @@ import RecentSearch from "./recent-search/RecentSearch";
 import FallIntoTravel from "./fall-into-travel/FallIntoTravel";
 import FlightIntoTravel from "./fall-into-travel/FlightIntoTravel";
 
+import "./index.css";
+
 const { Title } = Typography;
 
 const HotelSearch = () => {

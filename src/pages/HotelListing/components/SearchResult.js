@@ -21,8 +21,6 @@ import hotelIstanbul1 from "../../../assets/images/hotel-istanbul-1.png";
 import motelImage1 from "../../../assets/images/motel-image-1.png";
 import resortImage1 from "../../../assets/images/resort-image-1.png";
 
-import "../style.css";
-
 const { Text, Title } = Typography;
 
 // Hard Data for testing

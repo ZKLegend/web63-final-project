@@ -22,14 +22,28 @@
     url("./fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
 }
 
-/* @font-face {
+@font-face {
   font-family: "TradeGothicRegular";
-  src: local("TradeGothicRegular"),
-    url("./fonts/TradeGothic/Trade-Gothic-Regular.ttf") format("truetype");
+  src: local("TradeGothicRegular")
+    url("./fonts/Trade-Gothic/Trade-Gothic-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "TradeGothicBold";
   src: local("TradeGothichBold"),
     url("./fonts/Trade-Gothic/Trade-Gothic-Bold.ttf") format("truetype");
-} */
+}
+
+@font-face {
+  font-family: "TradeGothicLTExtended";
+  src: local("TradeGothicLTExtended"),
+    url("./fonts/Trade-Gothic/Trade-Gothic-LT-Std-Extended.otf")
+      format("truetype");
+}
+
+@font-face {
+  font-family: "TradeGothicLTExtendedBold";
+  src: local("TradeGothicLTExtendedBold"),
+    url("./fonts/Trade-Gothic/Trade-Gothic-LT-Std-Bold-Extended.otf")
+      format("truetype");
+}
