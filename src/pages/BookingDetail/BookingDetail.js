@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Row, Col, Typography, Divider, Breadcrumb, Button } from "antd";
 import { EnvironmentFilled, LineOutlined } from "@ant-design/icons";
@@ -306,13 +307,14 @@ const BookingDetail = () => {
                 <Text className="montserrat-semibold-16px">$265</Text>
               </div>
             </div>
-
-            <Button
-              className="big-button-background-filled"
-              style={{ width: "100%" }}
-            >
-              <Text className="montserrat-medium-16px">Book Now</Text>
-            </Button>
+            <Link to="/booking-complete">
+              <Button
+                className="big-button-background-filled"
+                style={{ width: "100%" }}
+              >
+                <Text className="montserrat-medium-16px">Book Now</Text>
+              </Button>
+            </Link>
           </Col>
         </Row>
       </div>

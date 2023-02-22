@@ -10,7 +10,7 @@ import {
   ConfigProvider,
 } from "antd";
 
-const { Title } = Typography;
+const { Text } = Typography;
 
 const freebies = [
   "free breakfast",
@@ -28,21 +28,15 @@ const ResultFilter = () => {
   }
   return (
     <div className="result-filter">
-      <Title style={{ margin: "0" }} level={3}>
-        Filters
-      </Title>
+      <Text className="montserrat-semibold-20px">Filters</Text>
       <ConfigProvider theme={{ components: { Collapse: { padding: 0 } } }}>
         <Collapse
           expandIconPosition="right"
-          style={{ backgroundColor: "white" }}
+          style={{ background: "#FAFAFA" }}
           bordered={false}
         >
           <Collapse.Panel
-            header={
-              <Title style={{ margin: "0" }} level={5}>
-                Price
-              </Title>
-            }
+            header={<Text className="montserrat-semibold-16px">Price</Text>}
             key="1"
           >
             <div className="collapse-panel-items">
@@ -61,9 +55,7 @@ const ResultFilter = () => {
           <Collapse.Panel
             header={
               <>
-                <Title style={{ margin: "0" }} level={5}>
-                  Rating
-                </Title>
+                <Text className="montserrat-semibold-16px">Rating</Text>
               </>
             }
             key="2"
@@ -95,9 +87,7 @@ const ResultFilter = () => {
           <Collapse.Panel
             header={
               <>
-                <Title style={{ margin: "0" }} level={5}>
-                  Freebies
-                </Title>
+                <Text className="montserrat-semibold-16px">Freebies</Text>
               </>
             }
             key="3"
@@ -123,9 +113,7 @@ const ResultFilter = () => {
           <Collapse.Panel
             header={
               <>
-                <Title style={{ margin: "0" }} level={5}>
-                  Amenities
-                </Title>
+                <Text className="montserrat-semibold-16px">Amenities</Text>
               </>
             }
             key="4"

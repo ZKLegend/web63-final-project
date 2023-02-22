@@ -6,7 +6,7 @@ import londonBigSize from "../../../assets/images/london-big-size.png";
 import melbourneBigSize from "../../../assets/images/melbourne-big-size.png";
 import columbiaBigSize from "../../../assets/images/columbia-big-size.png";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const travelCardItems = [
   {
@@ -61,14 +61,17 @@ const FallIntoTravelCard = () => {
                   >
                     <Col span={24}>
                       <Row>
-                        <Col span={16}>
-                          <Title
-                            style={{ margin: "0", color: "white" }}
-                            level={4}
+                        <Col className="flex-column" span={16}>
+                          <Text
+                            className="montserrat-semibold-24px"
+                            style={{ color: "white" }}
                           >
                             {element.name}
-                          </Title>
-                          <Text style={{ color: "white" }}>
+                          </Text>
+                          <Text
+                            className="montserrat-regular"
+                            style={{ color: "white" }}
+                          >
                             {element.description}
                           </Text>
                         </Col>
@@ -80,17 +83,19 @@ const FallIntoTravelCard = () => {
                             alignItems: "flex-end",
                           }}
                         >
-                          <Title
-                            style={{ margin: "0", color: "white" }}
-                            level={4}
+                          <Text
+                            className="montserrat-semibold-24px"
+                            style={{ color: "white" }}
                           >
                             {element.price}
-                          </Title>
+                          </Text>
                         </Col>
                       </Row>
                     </Col>
                     <Col span={24}>
-                      <Button className="large-button">Book a Hotel</Button>
+                      <Button className="large-button">
+                        <Text className="montserrat-medium">Book a Hotel</Text>
+                      </Button>
                     </Col>
                   </Row>
                   <img src={element.image} alt="Error" />

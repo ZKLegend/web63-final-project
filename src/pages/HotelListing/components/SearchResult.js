@@ -25,12 +25,30 @@ const { Text, Title } = Typography;
 
 // Hard Data for testing
 const dropdownItems = [
-  { label: "Lowest Recommend", value: "lowest recommend" },
-  { label: "Highest Reccomend", value: "highest reccomend" },
-  { label: "Lowest Rating", value: "lowest rating" },
-  { label: "Highest Rating", value: "highest rating" },
-  { label: "Lowest Price", value: "lowest price" },
-  { label: "Highest Price", value: "highest price" },
+  {
+    label: <Text className="montserrat-semibold">Lowest Recommend</Text>,
+    value: "lowest recommend",
+  },
+  {
+    label: <Text className="montserrat-semibold">Highest Reccomend</Text>,
+    value: "highest reccomend",
+  },
+  {
+    label: <Text className="montserrat-semibold">Lowest Rating</Text>,
+    value: "lowest rating",
+  },
+  {
+    label: <Text className="montserrat-semibold">Highest Rating</Text>,
+    value: "highest rating",
+  },
+  {
+    label: <Text className="montserrat-semibold">Lowest Price</Text>,
+    value: "lowest price",
+  },
+  {
+    label: <Text className="montserrat-semibold">Highest Price</Text>,
+    value: "highest price",
+  },
 ];
 
 const hotelSearchResults = [
@@ -398,7 +416,7 @@ function SearchResultItem({ searchResult, resultLength, setResultLength }) {
             <Select
               options={dropdownItems}
               bordered={false}
-              defaultValue={dropdownItems[0].label}
+              defaultValue={dropdownItems[0].value}
             />
           </div>
         </Col>

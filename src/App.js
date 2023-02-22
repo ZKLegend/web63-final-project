@@ -6,6 +6,7 @@ import HotelSearch from "./pages/HotelSearch/HotelSearch";
 import HotelListing from "./pages/HotelListing/HotelListing";
 import HotelDetail from "./pages/HotelDetail/HotelDetail";
 import BookingDetail from "./pages/BookingDetail/BookingDetail";
+import BookingComplete from "./pages/BookingDetail/components/BookingComplete";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/hotel-listing" element={<HotelListing />} />
           <Route path="/hotel-detail" element={<HotelDetail />} />
           <Route path="/booking-detail" element={<BookingDetail />} />
+          <Route path="/booking-complete" element={<BookingComplete />} />
         </Routes>
       </div>
 

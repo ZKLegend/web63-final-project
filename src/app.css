@@ -31,6 +31,15 @@ body {
   padding: 16px;
 }
 
+.logo-border-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 16px;
+}
+
 /* General Text Style */
 .montserrat-regular {
   font-family: "MontserratRegular";
@@ -46,6 +55,12 @@ body {
   font-family: "MontserratRegular";
   font-size: 12px;
   font-weight: 600;
+}
+
+.montserrat-regular-16px {
+  font-family: "MontserratRegular";
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .montserrat-medium {
@@ -65,6 +80,13 @@ body {
   color: #112211;
 }
 
+.montserrat-medium-20px {
+  font-family: "MontserratMedium";
+  font-size: 20px;
+  line-height: 25px;
+  color: #112211;
+}
+
 .montserrat-semibold {
   font-family: "MontserratSemiBold";
   color: #112211;
@@ -73,6 +95,8 @@ body {
 .montserrat-semibold-16px {
   font-family: "MontserratSemiBold";
   font-size: 16px;
+  color: #112211;
+  line-height: 20px;
 }
 
 .montserrat-semibold-20px {
@@ -90,6 +114,13 @@ body {
 .montserrat-semibold-24px {
   font-family: "MontserratSemiBold";
   font-size: 24px;
+}
+
+.montserrat-semibold-32px {
+  font-family: "MontserratSemiBold";
+  font-size: 32px;
+  color: #112211;
+  line-height: 40px;
 }
 
 .montserrat-bold {
@@ -171,6 +202,13 @@ body {
   color: #112211;
 }
 
+.trade-gothic-lt-extended-bold-32px {
+  font-family: "TradeGothicLTExtendedBold";
+  font-size: 32px;
+  line-height: 40px;
+  color: #112211;
+}
+
 .trade-gothic-lt-extended-bold-40px {
   font-family: "TradeGothicLTExtendedBold";
   font-size: 40px;
@@ -231,6 +269,16 @@ body {
   justify-content: center;
   align-items: center;
   border: 1px solid #8dd3bb;
+}
+
+.small-button-for-icons {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ebf6f2;
+  border-radius: 4px;
 }
 
 .button-background-filled {

@@ -3,14 +3,14 @@ import React from "react";
 
 import RecentSearchCard from "./RecentSearchCard";
 
-const { Title } = Typography;
+const { Text } = Typography;
 
 const RecentSearch = () => {
   return (
     <>
-      <Title style={{ margin: "0" }} level={3}>
+      <Text className="trade-gothic-lt-extended-bold-32px">
         Your Recent Searchs
-      </Title>
+      </Text>
       <RecentSearchCard />
     </>
   );

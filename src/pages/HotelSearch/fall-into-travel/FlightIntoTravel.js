@@ -15,7 +15,7 @@ const sriLankaImage = [
   { imageSource: sriLankaImage4 },
 ];
 
-const { Title, Text } = Typography;
+const { Text, Paragraph } = Typography;
 
 const FlightIntoTravel = () => {
   return (
@@ -37,46 +37,32 @@ const FlightIntoTravel = () => {
                 }}
               >
                 <Row justify="space-between">
-                  <Col span={12}>
-                    <Title level={1} style={{ margin: "0" }}>
+                  <Col span={16}>
+                    <Text className="trade-gothic-lt-extended-bold-40px">
                       Backpacking Sri Lanka
-                    </Title>
+                    </Text>
                   </Col>
-                  <Col
-                    style={{
-                      backgroundColor: "white",
-                      width: "68px",
-                      height: "62px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      justifyContent: "space-around",
-                      padding: "8px",
-                      borderRadius: "8px",
-                    }}
-                  >
-                    <Text>From</Text>
-                    <Title level={4} style={{ margin: "0" }}>
-                      $700
-                    </Title>
+                  <Col className="price-border-box">
+                    <Text className="trade-gothic-lt-extended">From</Text>
+                    <Text className="montserrat-semibold-20px">$700</Text>
                   </Col>
                 </Row>
                 <Row>
                   <Col>
-                    <Typography>
+                    <Paragraph className="montserrat-regular">
                       Traveling is a unique experience as it's the best way to
                       unplug from the pushes and pulls of daily life. It helps
                       us to forget about our problems, frustrations, and fears
                       at home. During our journey, we experience life in
                       different ways. We explore new places, cultures, cuisines,
                       traditions, and ways of living.
-                    </Typography>
+                    </Paragraph>
                   </Col>
                 </Row>
                 <Row style={{ alignSelf: "flex-end" }}>
                   <Col style={{ width: "100%" }}>
                     <Button style={{ width: "100%", height: "48px" }}>
-                      Book Flight
+                      <Text className="montserrat-medium">Book Flight</Text>
                     </Button>
                   </Col>
                 </Row>

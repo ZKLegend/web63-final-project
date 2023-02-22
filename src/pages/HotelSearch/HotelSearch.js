@@ -10,7 +10,7 @@ import FlightIntoTravel from "./fall-into-travel/FlightIntoTravel";
 
 import "./index.css";
 
-const { Title } = Typography;
+const { Text } = Typography;
 
 const HotelSearch = () => {
   return (
@@ -27,18 +27,22 @@ const HotelSearch = () => {
           width: "100%",
           padding: "0 24px",
           top: "80px",
-          left: "-104px",
+          left: "104px",
+          flexDirection: "column",
         }}
       >
-        <Col offset={2} span={6}>
-          <Title style={{ color: "white", margin: "0", fontSize: "45px" }}>
+        <Col span={6}>
+          <Text
+            className="trade-gothic-lt-extended-bold-40px"
+            style={{ color: "white" }}
+          >
             Make your travel whishlist, we’ll do the rest
-          </Title>
+          </Text>
         </Col>
-        <Col offset={2} span={20}>
-          <Title level={4} style={{ color: "white" }}>
+        <Col span={24}>
+          <Text className="montserrat-medium-20px" style={{ color: "white" }}>
             Special offers to suit your plan
-          </Title>
+          </Text>
         </Col>
       </Row>
 

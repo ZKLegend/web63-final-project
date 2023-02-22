@@ -1,5 +1,6 @@
 import { Row, Col, Typography } from "antd";
 import React from "react";
+import { Link } from "react-router-dom";
 
 import istanbulTurkey from "../../../assets/images/istanbul-turkey.png";
 import sydneyAustralia from "../../../assets/images/sydney-australia.png";
@@ -29,7 +30,7 @@ const recentSearch = [
   },
 ];
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const RecentSearchCard = () => {
   return (
@@ -44,11 +45,11 @@ const RecentSearchCard = () => {
               {" "}
               <Col span={6}>
                 <div style={{ height: "100%" }}>
-                  <Row justify="space-between" align="middle">
+                  <Row align="center">
                     <Col span={12}>
                       <img
                         src={element.image}
-                        alt="Error"
+                        alt={element.destination}
                         style={{
                           display: "block",
                           width: "90px",
@@ -56,13 +57,18 @@ const RecentSearchCard = () => {
                         }}
                       />
                     </Col>
-                    <Col span={12} flex="none">
-                      <a href="">
-                        <Title level={5} style={{ margin: "0" }}>
+                    <Col span={12} flex="none" className="flex-align-center">
+                      <Link to="/" className="flex-column">
+                        <Text className="montserrat-semibold-16px">
                           {element.destination}
-                        </Title>
-                        <Text type="secondary">{element.place}</Text>
-                      </a>
+                        </Text>
+                        <Text
+                          className="montserrat-regular-12px"
+                          type="secondary"
+                        >
+                          {element.place}
+                        </Text>
+                      </Link>
                     </Col>
                   </Row>
                 </div>
