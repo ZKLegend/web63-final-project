@@ -3,7 +3,8 @@ const express = require("express");
 const app = express();
 
 const amenity = require("./routes/stay/amenity");
-const stayCategory = require("./routes/stay/stay-category");
+const stayCategory = require("./routes/stay/category");
+const image = require("./routes/image");
 
 mongoose
   .connect(
@@ -15,6 +16,7 @@ mongoose
   .catch((err) => console.error(err));
 
 app.use(express.json());
+app.use("/api/image", image);
 app.use("/api/stay/amenity", amenity);
 app.use("/api/stay/category", stayCategory);
 

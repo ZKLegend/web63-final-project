@@ -6,4 +6,4 @@ const amenitySchema = new mongoose.Schema({
 
 const Amenity = mongoose.model("Amenity", amenitySchema);
 
-module.exports = { Amenity: Amenity };
+module.exports = { Amenity, amenitySchema };
