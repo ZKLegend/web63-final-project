@@ -1,5 +1,5 @@
 const { imageSchema } = require("../image");
-const { staySchema } = require("../stay/stay");
+
 const mongoose = require("mongoose");
 
 const roomSchema = new mongoose.Schema({
@@ -10,15 +10,11 @@ const roomSchema = new mongoose.Schema({
   images: [imageSchema],
   bookedDate: [
     {
-      checkIn: Date,
-      checkOut: Date,
+      checkIn: { type: Date },
+      checkOut: { type: Date },
     },
   ],
-  stay: new mongoose.Schema({
-    stayName: String,
-    address: String,
-    logo: imageSchema,
-  }),
+  stay: mongoose.Schema.Types.ObjectId,
 });
 
 const Room = mongoose.model("room", roomSchema);

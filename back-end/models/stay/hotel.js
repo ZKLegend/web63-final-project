@@ -1,20 +1,19 @@
 const { imageSchema } = require("../image");
 const { categorySchema } = require("./category");
 const { amenitySchema } = require("./amenity");
-const { roomSchema } = require("./room");
+
 const mongoose = require("mongoose");
 
-const staySchema = new mongoose.Schema({
-  stayName: String,
+const hotelSchema = new mongoose.Schema({
+  hotelName: String,
   star: Number,
   address: String,
   image: [imageSchema],
   category: [categorySchema],
   amenities: [amenitySchema],
-  rooms: [roomSchema],
   logo: imageSchema,
 });
 
-const Stay = mongoose.model("Stay", staySchema);
+const Hotel = mongoose.model("Hotel", hotelSchema);
 
-module.exports = { Stay, staySchema };
+module.exports = { Hotel, hotelSchema };
