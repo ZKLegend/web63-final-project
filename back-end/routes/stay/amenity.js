@@ -1,4 +1,5 @@
 const { Amenity } = require("../../models/stay/amenity");
+const { Image } = require("../../models/image");
 const express = require("express");
 const router = express.Router();
 
@@ -14,7 +15,9 @@ router.post("/", async (req, res) => {
   if (amenity && amenity != null)
     return res.status(401).send("This amenity already existed");
 
-  const newAmenity = { name: req.body.name };
+  const newAmenity = {
+    name: req.body.name,
+  };
   await Amenity.insertMany(newAmenity);
   res.send(newAmenity);
 });

@@ -8,13 +8,16 @@ const roomSchema = new mongoose.Schema({
   basePrice: Number,
   availableGuest: Number,
   images: [imageSchema],
-  bookedDate: [
-    {
-      checkIn: { type: Date },
-      checkOut: { type: Date },
-    },
-  ],
-  stay: mongoose.Schema.Types.ObjectId,
+  bookedDate: {
+    type: [
+      {
+        checkIn: { type: Date },
+        checkOut: { type: Date },
+      },
+    ],
+    default: undefined,
+  },
+  hotel: mongoose.Schema.Types.ObjectId,
 });
 
 const Room = mongoose.model("room", roomSchema);

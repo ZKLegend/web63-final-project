@@ -1,5 +1,5 @@
 .hotel-listing {
-  padding: 0 104px;
+  padding: 48px 104px 0 104px;
 }
 
 .large-button-background-filled {
@@ -29,4 +29,11 @@
   justify-content: center;
   flex-direction: column;
   height: 45px;
+}
+
+.search-box-container {
+  padding: 32px 24px;
+  background: #ffffff;
+  box-shadow: 0px 4px 16px rgba(17, 34, 17, 0.05);
+  border-radius: 16px;
 }

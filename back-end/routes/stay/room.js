@@ -5,54 +5,58 @@ const { Room } = require("../../models/stay/room");
 const { Hotel } = require("../../models/stay/hotel");
 const { Image } = require("../../models/image");
 
+// Create Room
 router.post("/", async (req, res) => {
+  const images = await Image.find({
+    _id: {
+      $in: req.body.imageId,
+    },
+  });
   const hotel = await Hotel.findById(req.body.hotelId);
-  const image = await Image.findById(req.body.imagesId);
-  if (!image) return res.status(401).send("No Images found");
-
+  if (!hotel) return res.status(401).send("No hotel found");
   const room = {
-    roomName: req.body.name,
-    numberInStock: req.body.number,
-    basePrice: req.body.price,
+    roomName: req.body.roomName,
+    numberInStock: req.body.numberInStock,
+    basePrice: req.body.basePrice,
     availableGuest: req.body.availableGuest,
-    images: {
-      _id: image._id,
-      imageSrc: image.imageSrc,
-    },
-    bookedDate: {
-      checkIn: req.body.checkIn,
-      checkOut: req.body.checkOut,
-    },
+    images: images,
+    hotel: hotel._id,
   };
+
   await Room.insertMany(room);
   res.send({ message: "Room created success", room });
 });
 
+// Edit Room
 router.put("/:id", async (req, res) => {
-  let room = await Room.findById(req.params.id);
-  const image = await Image.findById(req.body.imagesId);
-  const newRoom = {
-    roomName: req.body.name,
-    numberInStock: req.body.number,
-    basePrice: req.body.price,
-    availableGuest: req.body.availableGuest,
-    images: {
-      _id: image._id,
-      imageSrc: image.imageSrc,
+  let images = await Image.find({
+    _id: {
+      $in: req.body.imageId,
     },
-    bookedDate: {
+  });
+  const hotel = await Hotel.findById(req.body.hotelId);
+  if (!hotel) return res.status(401).send("No hotel found");
+
+  const room = await Room.findByIdAndUpdate(
+    req.params.id,
+    {
+      roomName: req.body.roomName,
+      numberInStock: req.body.numberInStock,
+      basePrice: req.body.basePrice,
+      availableGuest: req.body.availableGuest,
+      images: images,
+      hotel: hotel,
+    },
+    { new: true }
+  );
+
+  if (req.body.checkIn && req.body.checkOut) {
+    room.bookedDate.push({
       checkIn: req.body.checkIn,
       checkOut: req.body.checkOut,
-    },
-  };
-  // room.images.push({ _id: image._id, imageSrc: image.imageSrc });
-  // room.bookedDate.push({
-  //   checkIn: req.body.checkIn,
-  //   checkOut: req.body.checkOut,
-  // });
+    });
+  }
   await room.save();
-  console.log(room);
-
   res.send(room);
 });
 

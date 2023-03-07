@@ -9,22 +9,13 @@ import {
   Typography,
 } from "antd";
 
-import { EnvironmentFilled, WifiOutlined, FlagFilled } from "@ant-design/icons";
 import {
-  CoffeIcon,
-  FitnessIcon,
-  PoolIcon,
-  StarFilled,
-  WineIcon,
-  SpaIcon,
-  RestaurantIcon,
-  RoomServiceIcon,
-} from "../../../assets/icon-components/IconComponent";
+  EnvironmentFilled,
+  FlagFilled,
+  LoadingOutlined,
+} from "@ant-design/icons";
+import { StarFilled } from "../../../assets/icon-components/IconComponent";
 
-import hotelIstanbul2 from "../../../assets/images/hotel-istanbul-2.png";
-import hotelIstanbul3 from "../../../assets/images/hotel-istanbul-3.png";
-import hotelIstanbul4 from "../../../assets/images/hotel-istanbul-4.png";
-import hotelIstanbul5 from "../../../assets/images/hotel-istanbul-5.png";
 import hotelLocationMap from "../../../assets/images/hotel-location-map.png";
 
 import userAvatar1 from "../../../assets/images/user-avatar-1.png";
@@ -107,68 +98,6 @@ const hotelReviews = [
   },
 ];
 
-const amenities = [
-  {
-    amenityName: "Outdoor pool",
-    amenityIcon: <PoolIcon />,
-  },
-  {
-    amenityName: "Fitness center",
-    amenityIcon: <FitnessIcon />,
-  },
-  {
-    amenityName: "Indoor pool",
-    amenityIcon: <PoolIcon />,
-  },
-  {
-    amenityName: "Bar/Lounge",
-    amenityIcon: <WineIcon />,
-  },
-  {
-    amenityName: "Spa and wellness center",
-    amenityIcon: <SpaIcon />,
-  },
-  {
-    amenityName: "Free Wi-Fi",
-    amenityIcon: <WifiOutlined style={{ fontSize: "20px" }} />,
-  },
-  {
-    amenityName: "Restaurant",
-    amenityIcon: <RestaurantIcon />,
-  },
-  {
-    amenityName: "Tea/coffe machine",
-    amenityIcon: <CoffeIcon />,
-  },
-  {
-    amenityName: "Room service",
-    amenityIcon: <RoomServiceIcon />,
-  },
-];
-
-const hotelRooms = [
-  {
-    roomName: "Superior room - 1 double bed or 2 twin beds",
-    images: hotelIstanbul2,
-    price: 240,
-  },
-  {
-    roomName: "Superior room - City view  - 1 double bed or 2 twin beds",
-    images: hotelIstanbul3,
-    price: 280,
-  },
-  {
-    roomName: "Superior room - City view  - 1 double bed or 2 twin beds",
-    images: hotelIstanbul4,
-    price: 320,
-  },
-  {
-    roomName: "Superior room - City view  - 1 double bed or 2 twin beds",
-    images: hotelIstanbul5,
-    price: 350,
-  },
-];
-
 const hotelFeatures = [
   "Near park",
   "Near nightlife",
@@ -178,11 +107,11 @@ const hotelFeatures = [
 
 const { Text, Paragraph } = Typography;
 
-const DetailedInformation = () => {
+const DetailedInformation = ({ hotelDetail, isLoading }) => {
   const [amenityLength, setAmenityLength] = useState(4);
   const [currentData, setCurrentData] = useState(hotelReviews.slice(0, 5));
   const showMoreAmenities = () => {
-    setAmenityLength(amenities.length);
+    setAmenityLength(hotelDetail.amenities.length);
   };
   const showLessAmenities = () => {
     setAmenityLength(4);
@@ -278,62 +207,74 @@ const DetailedInformation = () => {
           }}
           span={24}
         >
-          <Text className="trade-gothic-bold" style={{ fontSize: "20px" }}>
+          <Text
+            id="available-rooms"
+            className="trade-gothic-bold"
+            style={{ fontSize: "20px" }}
+          >
             Available Rooms
           </Text>
-          <Row gutter={[0, 8]}>
-            {hotelRooms.map((element, index) => {
-              return (
-                <>
-                  <Col span={24} className="flex-space-between">
-                    {/* Room Name */}
-                    <div
-                      className="flex-align-center"
-                      style={{
-                        gap: "16px",
-                      }}
-                    >
-                      <img
-                        alt={element.roomName}
-                        src={element.images}
-                        style={{
-                          width: "48px",
-                          height: "48px",
-                          display: "block",
-                          borderRadius: "4px",
-                        }}
-                      />
-                      <Text className="montserrat-medium-16px">
-                        {element.roomName}
-                      </Text>
-                    </div>
+          {hotelDetail.roomInfo === undefined ? (
+            <h1>
+              <LoadingOutlined style={{ fontSize: "40px" }} />
+            </h1>
+          ) : (
+            <>
+              <Row gutter={[0, 8]}>
+                {hotelDetail.roomInfo.map((element, index) => {
+                  return (
+                    <>
+                      <Col span={24} className="flex-space-between">
+                        <div
+                          className="flex-align-center"
+                          style={{
+                            gap: "16px",
+                          }}
+                        >
+                          <img
+                            alt={element.roomName}
+                            src={element.images[0].imageSrc}
+                            style={{
+                              width: "48px",
+                              height: "48px",
+                              display: "block",
+                              borderRadius: "4px",
+                            }}
+                          />
+                          <Text className="montserrat-medium-16px">
+                            {element.roomName}
+                          </Text>
+                        </div>
 
-                    {/* Price and Button */}
-                    <div
-                      className="flex-align-center"
-                      style={{
-                        gap: "64px",
-                      }}
-                    >
-                      <Text className="montserrat-semibold-24px">
-                        ${element.price}
-                        <Text className="montserrat-semibold">/night</Text>
-                      </Text>
-                      <Button
-                        className="button-background-filled"
-                        style={{ width: "150px" }}
-                      >
-                        <Text className="montserrat-semibold">Book now</Text>
-                      </Button>
-                    </div>
-                  </Col>
-                  {index !== hotelRooms.length - 1 ? (
-                    <Divider style={{ margin: "0" }} />
-                  ) : null}
-                </>
-              );
-            })}
-          </Row>
+                        <div
+                          className="flex-align-center"
+                          style={{
+                            gap: "64px",
+                          }}
+                        >
+                          <Text className="montserrat-semibold-24px">
+                            ${element.basePrice}
+                            <Text className="montserrat-semibold">/night</Text>
+                          </Text>
+                          <Button
+                            className="button-background-filled"
+                            style={{ width: "150px" }}
+                          >
+                            <Text className="montserrat-semibold">
+                              Book now
+                            </Text>
+                          </Button>
+                        </div>
+                      </Col>
+                      {index !== hotelDetail.roomInfo.length - 1 ? (
+                        <Divider style={{ margin: "0" }} />
+                      ) : null}
+                    </>
+                  );
+                })}
+              </Row>
+            </>
+          )}
         </Col>
 
         <Divider style={{ margin: "0" }} />
@@ -361,7 +302,7 @@ const DetailedInformation = () => {
               style={{ opacity: "0.75" }}
             >
               <EnvironmentFilled />
-              &nbsp; Gümüssuyu Mah. Inönü Cad. No:8, Istanbul 34437
+              &nbsp; {hotelDetail.address}
             </Text>
           </div>
         </Col>
@@ -387,43 +328,54 @@ const DetailedInformation = () => {
               rowGap: "24px",
             }}
           >
-            {amenities.slice(0, amenityLength).map((element) => {
-              return (
-                <>
-                  {" "}
-                  <div
-                    className="flex-align-center"
-                    style={{
-                      width: "210px",
-
-                      gap: "8px",
-                    }}
-                  >
-                    {element.amenityIcon}
-
-                    <Text className="montserrat-medium-16px">
-                      {element.amenityName}
-                    </Text>
-                  </div>
-                </>
-              );
-            })}
-            {amenityLength < amenities.length - 1 ? (
-              <Text
-                onClick={showMoreAmenities}
-                className="montserrat-semibold-16px-slamon"
-                style={{ cursor: "pointer" }}
-              >
-                Show more
-              </Text>
+            {hotelDetail.amenities === undefined ? (
+              <h1>
+                <LoadingOutlined style={{ fontSize: "40px" }} />
+              </h1>
             ) : (
-              <Text
-                onClick={showLessAmenities}
-                className="montserrat-semibold-16px-slamon"
-                style={{ cursor: "pointer" }}
-              >
-                Show less
-              </Text>
+              <>
+                {" "}
+                {hotelDetail.amenities
+                  .slice(0, amenityLength)
+                  .map((element) => {
+                    return (
+                      <>
+                        {" "}
+                        <div
+                          className="flex-align-center"
+                          style={{
+                            width: "210px",
+
+                            gap: "8px",
+                          }}
+                        >
+                          <img alt="icon" src={element.icon.imageSrc} />
+
+                          <Text className="montserrat-medium-16px">
+                            {element.name}
+                          </Text>
+                        </div>
+                      </>
+                    );
+                  })}
+                {amenityLength < hotelDetail.amenities.length - 1 ? (
+                  <Text
+                    onClick={showMoreAmenities}
+                    className="montserrat-semibold-16px-slamon"
+                    style={{ cursor: "pointer" }}
+                  >
+                    Show more
+                  </Text>
+                ) : (
+                  <Text
+                    onClick={showLessAmenities}
+                    className="montserrat-semibold-16px-slamon"
+                    style={{ cursor: "pointer" }}
+                  >
+                    Show less
+                  </Text>
+                )}
+              </>
             )}
           </div>
         </Col>

@@ -6,12 +6,15 @@ const mongoose = require("mongoose");
 
 const hotelSchema = new mongoose.Schema({
   hotelName: String,
-  star: Number,
+  destination: String,
+  star: { type: Number, min: 1, max: 5 },
   address: String,
-  image: [imageSchema],
-  category: [categorySchema],
+  images: [imageSchema],
+  category: categorySchema,
   amenities: [amenitySchema],
   logo: imageSchema,
+  room: { type: [mongoose.Schema.Types.ObjectId], default: undefined },
+  review: { type: [mongoose.Schema.Types.ObjectId], default: undefined },
 });
 
 const Hotel = mongoose.model("Hotel", hotelSchema);

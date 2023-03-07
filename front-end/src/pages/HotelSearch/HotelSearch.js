@@ -12,7 +12,8 @@ import "./index.css";
 
 const { Text } = Typography;
 
-const HotelSearch = () => {
+const HotelSearch = ({ params, setParams }) => {
+  console.log("Params in HotelSearch:", params);
   return (
     <div className="hotel-search" style={{ position: "relative" }}>
       {/* Poster Section */}
@@ -48,7 +49,7 @@ const HotelSearch = () => {
 
       {/* Content Section */}
       <div className="hotel-search-content">
-        <SearchTab />
+        <SearchTab params={params} setParams={setParams} />
         <Row gutter={[0, 80]}>
           <Col span={24} style={{ width: "100%" }}>
             <RecentSearch />

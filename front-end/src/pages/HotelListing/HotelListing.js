@@ -1,51 +1,57 @@
-import { Row, Col, Divider, Button } from "antd";
+import { Row, Col, Divider } from "antd";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import React from "react";
 
-import { SearchOutlined } from "@ant-design/icons";
-import { StaySearchBar } from "../../components/search-tab/StaySearch";
+import StaySearch from "../../components/search-tab/StaySearch";
 import ResultFilter from "./components/ResultFilter";
 import SearchResult from "./components/SearchResult";
 
 import "./index.css";
 
-const HotelListing = () => {
+const HotelListing = ({ params, setParams }) => {
+  const [hotelData, setHotelData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const getHotelData = () => {
+      setIsLoading(true);
+      axios({
+        method: "get",
+        url: `http://localhost:3001/api/stay/hotel`,
+        params: params,
+      })
+        .then((result) => {
+          setHotelData([...result.data]);
+        })
+        .catch((err) => console.error(err));
+
+      setIsLoading(false);
+    };
+    getHotelData();
+  }, []);
+
+  console.log("Params in Listing Page: ", params);
   return (
     <div className="hotel-listing">
       {/* Search Bar Section */}
-      <Row justify="center" style={{ marginBottom: "32px" }}>
-        <Col
-          span={24}
-          style={{
-            display: "flex",
-            background: "#FFFFFF",
-            boxShadow: "0px 4px 16px rgba(17, 34, 17, 0.05)",
-            borderRadius: "16px",
-            padding: "32px 24px",
-          }}
-        >
-          <Row gutter={16} style={{ width: "100%" }}>
-            <StaySearchBar />
-          </Row>
-          <Button
-            style={{
-              marginLeft: "16px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "40px",
-              backgroundColor: "#8DD3BB",
-            }}
-          >
-            <SearchOutlined style={{ fontSize: "20px" }} />
-          </Button>
-        </Col>
-      </Row>
+      <div className="search-box-container">
+        <StaySearch params={params} setParams={setParams} />
+      </div>
+
       {/* End Search Bar */}
 
-      <Row>
+      <Row style={{ marginTop: "32px" }}>
         {/* Filter Component */}
         <Col style={{ width: "343px" }}>
-          <ResultFilter />
+          <ResultFilter
+            params={params}
+            setParams={setParams}
+            setHotelData={setHotelData}
+            setIsLoading={setIsLoading}
+          />
         </Col>
         <Col
           style={{ display: "flex", justifyContent: "center", width: "48px" }}
@@ -56,7 +62,16 @@ const HotelListing = () => {
 
         {/* Search Result Component */}
         <Col style={{ width: "840px" }}>
-          <SearchResult />
+          <SearchResult
+            hotelData={hotelData}
+            setHotelData={setHotelData}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+            params={params}
+            setParams={setParams}
+          />
         </Col>
       </Row>
     </div>

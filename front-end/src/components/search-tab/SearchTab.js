@@ -7,31 +7,30 @@ import FlightSearch from "./FlightSearch";
 import "./index.css";
 import { BedIcon, PlaneIcon } from "../../assets/icon-components/IconComponent";
 
-const items = [
-  {
-    key: "1",
-    label: (
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <PlaneIcon />
-        &nbsp;
-        <div>Flights</div>
-      </div>
-    ),
-    children: <FlightSearch />,
-  },
-  {
-    key: "2",
-    label: (
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <BedIcon />
-        &nbsp; Stays
-      </div>
-    ),
-    children: <StaySearch />,
-  },
-];
-
-const SearchTab = () => {
+const SearchTab = ({ params, setParams }) => {
+  const items = [
+    {
+      key: "1",
+      label: (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <PlaneIcon />
+          &nbsp;
+          <div>Flights</div>
+        </div>
+      ),
+      children: <FlightSearch />,
+    },
+    {
+      key: "2",
+      label: (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <BedIcon />
+          &nbsp; Stays
+        </div>
+      ),
+      children: <StaySearch params={params} setParams={setParams} />,
+    },
+  ];
   return (
     <div className="search-tab">
       <Row justify="center">
