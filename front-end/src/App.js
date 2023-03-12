@@ -14,15 +14,16 @@ const App = () => {
     pageIndex: 1,
     pageSize: 4,
     sortBy: "minPrice",
-    priceFilter: [100, 600],
+    minPriceFilter: 100,
+    maxPriceFilter: 600,
   });
   return (
     <div className="app">
       {/* Header Section */}
       <div className="header" style={{ height: "87px" }}>
         Header
+        <Link to="/">HomePage</Link>
         <Link to="/hotel-listing">Hotel Listing</Link>
-        {/* <Link to="/hotel-detail/">Hotel Detail</Link> */}
         <Link to="/booking-detail">Booking Detail</Link>
       </div>
 

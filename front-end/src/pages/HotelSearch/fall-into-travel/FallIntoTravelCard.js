@@ -39,69 +39,67 @@ const FallIntoTravelCard = () => {
   return (
     <>
       <Row gutter={16}>
-        {travelCardItems.map((element) => {
+        {travelCardItems.map((element, index) => {
           return (
-            <>
-              <Col span={6}>
-                <div
+            <Col key={index} span={6}>
+              <div
+                style={{
+                  height: "420px",
+                  position: "relative",
+                  width: "296px",
+                }}
+              >
+                <Row
+                  gutter={[0, 16]}
                   style={{
-                    height: "420px",
-                    position: "relative",
-                    width: "296px",
+                    position: "absolute",
+                    left: "24px",
+                    top: "282px",
+                    width: "248px",
                   }}
                 >
-                  <Row
-                    gutter={[0, 16]}
-                    style={{
-                      position: "absolute",
-                      left: "24px",
-                      top: "282px",
-                      width: "248px",
-                    }}
-                  >
-                    <Col span={24}>
-                      <Row>
-                        <Col className="flex-column" span={16}>
-                          <Text
-                            className="montserrat-semibold-24px"
-                            style={{ color: "white" }}
-                          >
-                            {element.name}
-                          </Text>
-                          <Text
-                            className="montserrat-regular"
-                            style={{ color: "white" }}
-                          >
-                            {element.description}
-                          </Text>
-                        </Col>
-                        <Col
-                          span={8}
-                          style={{
-                            display: "flex",
-                            flexDirection: "column-reverse",
-                            alignItems: "flex-end",
-                          }}
+                  <Col span={24}>
+                    <Row>
+                      <Col className="flex-column" span={16}>
+                        <Text
+                          className="montserrat-semibold-24px"
+                          style={{ color: "white" }}
                         >
-                          <Text
-                            className="montserrat-semibold-24px"
-                            style={{ color: "white" }}
-                          >
-                            {element.price}
-                          </Text>
-                        </Col>
-                      </Row>
-                    </Col>
-                    <Col span={24}>
-                      <Button className="large-button">
-                        <Text className="montserrat-medium">Book a Hotel</Text>
-                      </Button>
-                    </Col>
-                  </Row>
-                  <img src={element.image} alt="Error" />
-                </div>
-              </Col>
-            </>
+                          {element.name}
+                        </Text>
+                        <Text
+                          className="montserrat-regular"
+                          style={{ color: "white" }}
+                        >
+                          {element.description}
+                        </Text>
+                      </Col>
+                      <Col
+                        span={8}
+                        style={{
+                          display: "flex",
+                          flexDirection: "column-reverse",
+                          alignItems: "flex-end",
+                        }}
+                      >
+                        <Text
+                          className="montserrat-semibold-24px"
+                          style={{ color: "white" }}
+                        >
+                          {element.price}
+                        </Text>
+                      </Col>
+                    </Row>
+                  </Col>
+                  <Col span={24}>
+                    <Button className="large-button">
+                      <Text className="montserrat-medium">Book a Hotel</Text>
+                    </Button>
+                  </Col>
+                </Row>
+                <img src={element.image} alt="Error" />
+              </div>
+            </Col>
           );
         })}
       </Row>

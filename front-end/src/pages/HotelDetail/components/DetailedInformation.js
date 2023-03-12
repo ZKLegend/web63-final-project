@@ -224,7 +224,7 @@ const DetailedInformation = ({ hotelDetail, isLoading }) => {
                 {hotelDetail.roomInfo.map((element, index) => {
                   return (
                     <>
-                      <Col span={24} className="flex-space-between">
+                      <Col span={24} style={{ display: "flex" }}>
                         <div
                           className="flex-align-center"
                           style={{
@@ -247,15 +247,18 @@ const DetailedInformation = ({ hotelDetail, isLoading }) => {
                         </div>
 
                         <div
-                          className="flex-align-center"
                           style={{
-                            gap: "64px",
+                            marginLeft: "auto",
+                            display: "flex",
+                            justifyContent: "space-between",
+                            width: "25%",
                           }}
                         >
                           <Text className="montserrat-semibold-24px">
                             ${element.basePrice}
                             <Text className="montserrat-semibold">/night</Text>
                           </Text>
+
                           <Button
                             className="button-background-filled"
                             style={{ width: "150px" }}

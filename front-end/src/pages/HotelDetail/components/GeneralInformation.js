@@ -137,7 +137,7 @@ const GeneralInformation = ({ hotelDetail, isLoading }) => {
                     <ShareAltOutlined style={{ fontSize: "20px" }} />
                   </Button>
                   <Button
-                    className="big-button-background-filled"
+                    className="button-background-filled"
                     style={{ width: "150px" }}
                   >
                     <Anchor affix={false} targetOffset={87}>

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+
 import {
   Row,
   Col,
@@ -43,30 +43,11 @@ const dropdownItems = [
 ];
 
 // Main Search Result Component
-const SearchResult = ({
-  hotelData,
-  setHotelData,
-  isLoading,
-  setIsLoading,
-  params,
-  setParams,
-}) => {
-  useEffect(() => {
-    setIsLoading(true);
-    axios({
-      method: "get",
-      url: `http://localhost:3001/api/stay/hotel`,
-      params: params,
-    })
-      .then((result) => {
-        setHotelData([...result.data]);
-      })
-      .catch((err) => console.error(err));
-    setIsLoading(false);
-  }, [params]);
+const SearchResult = ({ hotelData, isLoading, queryParams }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const handleTabChange = async (key) => {
-    setParams({ ...params, category: key });
+  const handleTabChange = (key) => {
+    setSearchParams({ ...queryParams, category: key });
   };
 
   return (
@@ -95,20 +76,13 @@ const SearchResult = ({
                     label: (
                       <div className="tab-label-style">
                         <Text className="montserrat-semibold-16px">Hotels</Text>
-                        <Text
-                          className="montserrat-regular"
-                          style={{ opacity: "0.4" }}
-                        >
-                          {hotelData.length} places
-                        </Text>
                       </div>
                     ),
                     children: (
                       <SearchResultItem
-                        params={params}
-                        setParams={setParams}
                         hotelData={hotelData}
                         isLoading={isLoading}
+                        queryParams={queryParams}
                       />
                     ),
                   },
@@ -117,20 +91,13 @@ const SearchResult = ({
                     label: (
                       <div className="tab-label-style">
                         <Text className="montserrat-semibold-16px">Motels</Text>
-                        <Text
-                          className="montserrat-regular"
-                          style={{ opacity: "0.4" }}
-                        >
-                          {hotelData.length} places
-                        </Text>
                       </div>
                     ),
                     children: (
                       <SearchResultItem
-                        params={params}
-                        setParams={setParams}
                         hotelData={hotelData}
                         isLoading={isLoading}
+                        queryParams={queryParams}
                       />
                     ),
                   },
@@ -141,20 +108,13 @@ const SearchResult = ({
                         <Text className="montserrat-semibold-16px">
                           Resorts
                         </Text>
-                        <Text
-                          className="montserrat-regular"
-                          style={{ opacity: "0.4" }}
-                        >
-                          {hotelData.length} places
-                        </Text>
                       </div>
                     ),
                     children: (
                       <SearchResultItem
-                        params={params}
-                        setParams={setParams}
                         hotelData={hotelData}
                         isLoading={isLoading}
+                        queryParams={queryParams}
                       />
                     ),
                   },
@@ -169,13 +129,14 @@ const SearchResult = ({
 };
 
 // Search Result Item mini component for Search Result
-function SearchResultItem({ hotelData, isLoading, params, setParams }) {
+function SearchResultItem({ hotelData, isLoading, queryParams }) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const handlePageChange = async (pageIndex, pageSize) => {
-    await setParams({ ...params, pageIndex, pageSize });
+    setSearchParams({ ...queryParams, pageIndex, pageSize });
   };
 
   const handleDropDownChange = async (value) => {
-    await setParams({ ...params, sortBy: value });
+    setSearchParams({ ...queryParams, sortBy: value });
   };
 
   return (
@@ -208,12 +169,13 @@ function SearchResultItem({ hotelData, isLoading, params, setParams }) {
           <>
             {" "}
             {hotelData.map((element, index) => {
+              let hotel = element.newRoot.hotelInfo;
               return (
                 <div key={index}>
                   <Col span={24} style={{ display: "flex" }}>
                     <img
                       alt="hotel"
-                      src={element.images[0].imageSrc}
+                      src={hotel.images[0].imageSrc}
                       style={{
                         width: "300px",
                         minHeight: "100%",
@@ -235,7 +197,7 @@ function SearchResultItem({ hotelData, isLoading, params, setParams }) {
                                     level={3}
                                     style={{ height: "50px", margin: "0" }}
                                   >
-                                    {element.hotelName}
+                                    {hotel.hotelName}
                                   </Title>
                                 </Col>
                                 <Col
@@ -251,23 +213,23 @@ function SearchResultItem({ hotelData, isLoading, params, setParams }) {
                                     style={{ opacity: "0.75" }}
                                   >
                                     <EnvironmentFilled />
-                                    &nbsp; {element.address}
+                                    &nbsp; {hotel.address}
                                   </Text>
                                   <div>
                                     <Rate
                                       style={{ fontSize: "15px" }}
                                       disabled
-                                      defaultValue={element.star}
+                                      defaultValue={hotel.star}
                                     />
                                     &nbsp;
                                     <Text className="montserrat-regular-12px">
-                                      {element.star} Star Hotel
+                                      {hotel.star} Star Hotel
                                     </Text>
                                     <Text
                                       className="montserrat-regular-12px"
                                       style={{ marginLeft: "32px" }}
                                     >
-                                      {element.amenities.length} Aminities
+                                      {hotel.amenities.length} Aminities
                                     </Text>
                                   </div>
                                   <div
@@ -311,7 +273,7 @@ function SearchResultItem({ hotelData, isLoading, params, setParams }) {
                                   textAlign: "right",
                                 }}
                               >
-                                ${element.roomInfo[0].basePrice}
+                                ${element.newRoot.basePrice}
                                 <span
                                   style={{
                                     color: "#ff8682",
@@ -341,7 +303,7 @@ function SearchResultItem({ hotelData, isLoading, params, setParams }) {
                         <LikeButton />
                         <Button className="large-button-background-filled">
                           <Link
-                            to={`/hotel-detail/${element._id}`}
+                            to={`/hotel-detail/${hotel._id}`}
                             className="montserrat-semibold"
                           >
                             View Place

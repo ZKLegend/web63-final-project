@@ -39,41 +39,38 @@ const RecentSearchCard = () => {
       style={{ height: "90px", marginTop: "32px" }}
     >
       <Row gutter={80} style={{ height: "100%" }}>
-        {recentSearch.map((element) => {
+        {recentSearch.map((element, index) => {
           return (
-            <>
-              {" "}
-              <Col span={6}>
-                <div style={{ height: "100%" }}>
-                  <Row align="center">
-                    <Col span={12}>
-                      <img
-                        src={element.image}
-                        alt={element.destination}
-                        style={{
-                          display: "block",
-                          width: "90px",
-                          height: "90px",
-                        }}
-                      />
-                    </Col>
-                    <Col span={12} flex="none" className="flex-align-center">
-                      <Link to="/" className="flex-column">
-                        <Text className="montserrat-semibold-16px">
-                          {element.destination}
-                        </Text>
-                        <Text
-                          className="montserrat-regular-12px"
-                          type="secondary"
-                        >
-                          {element.place}
-                        </Text>
-                      </Link>
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-            </>
+            <Col key={index} span={6}>
+              <div style={{ height: "100%" }}>
+                <Row align="center">
+                  <Col span={12}>
+                    <img
+                      src={element.image}
+                      alt={element.destination}
+                      style={{
+                        display: "block",
+                        width: "90px",
+                        height: "90px",
+                      }}
+                    />
+                  </Col>
+                  <Col span={12} flex="none" className="flex-align-center">
+                    <Link to="/" className="flex-column">
+                      <Text className="montserrat-semibold-16px">
+                        {element.destination}
+                      </Text>
+                      <Text
+                        className="montserrat-regular-12px"
+                        type="secondary"
+                      >
+                        {element.place}
+                      </Text>
+                    </Link>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
           );
         })}
       </Row>

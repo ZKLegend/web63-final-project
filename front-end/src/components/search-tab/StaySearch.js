@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { createSearchParams, useNavigate } from "react-router-dom";
 import { Button, Row, Col, DatePicker, Select, InputNumber } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
@@ -19,41 +19,47 @@ const StaySearch = ({ params, setParams }) => {
   // Listing Destination Options in Search Bar
   const [destinationOptions, setDestinationOptions] = useState([]);
   useEffect(() => {
-    const getDestinationData = () => {
-      axios
-        .get("http://localhost:3001/api/stay/destination")
-        .then((result) => {
-          setDestinationOptions(
-            result.data.map((element) => {
-              return { value: element.name, label: element.name };
-            })
-          );
-        })
-        .then((err) => console.error(err));
-    };
-    getDestinationData();
+    axios
+      .get("http://localhost:3001/api/stay/destination")
+      .then((result) => {
+        setDestinationOptions(
+          result.data.map((element) => {
+            return { value: element.name, label: element.name };
+          })
+        );
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   const getRoomNumber = (value) => {
     setCountRoom(value);
+    setParams({ ...params, countRoom: value });
   };
 
   const getGuestNumber = (value) => {
     setCountGuest(value);
+    setParams({ ...params, countGuest: value });
   };
 
   const selectDate = (date, dateString) => {
-    setBookDate(...bookDate, dateString);
+    setParams({
+      ...params,
+      checkIn: dateString[0],
+      checkOut: dateString[1],
+    });
+    // setBookDate(...bookDate, dateString);
   };
   const selectDestination = (value) => {
-    setDestination(value);
+    setParams({ ...params, destination: value });
+    // setDestination(value);
   };
 
   const handleSearch = () => {
-    setParams({ ...params, destination, bookDate, countGuest, countRoom });
-    navigate("/hotel-listing");
+    navigate({
+      pathname: "/hotel-listing",
+      search: `?${createSearchParams(params)}`,
+    });
   };
-  // console.log("Params in Homepage:", params);
 
   return (
     <div className="stay-search tab-items">

@@ -71,16 +71,15 @@ const FlightIntoTravel = () => {
             <Col span={14}>
               <div>
                 <Row gutter={[0, 40]}>
-                  {sriLankaImage.map((element) => {
+                  {sriLankaImage.map((element, index) => {
                     return (
-                      <>
-                        <Col
-                          span={12}
-                          style={{ display: "flex", justifyContent: "end" }}
-                        >
-                          <img src={element.imageSource} alt="error" />
-                        </Col>
-                      </>
+                      <Col
+                        key={index}
+                        span={12}
+                        style={{ display: "flex", justifyContent: "end" }}
+                      >
+                        <img src={element.imageSource} alt="error" />
+                      </Col>
                     );
                   })}
                 </Row>

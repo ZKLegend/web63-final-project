@@ -13,7 +13,6 @@ import "./index.css";
 const { Text } = Typography;
 
 const HotelSearch = ({ params, setParams }) => {
-  console.log("Params in HotelSearch:", params);
   return (
     <div className="hotel-search" style={{ position: "relative" }}>
       {/* Poster Section */}

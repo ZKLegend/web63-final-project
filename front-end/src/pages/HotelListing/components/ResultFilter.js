@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   Typography,
   Row,
@@ -13,13 +14,9 @@ import {
 
 const { Text } = Typography;
 
-const ResultFilter = ({
-  setHotelData,
-  setIsLoading,
-  params = { params },
-  setParams = { setParams },
-}) => {
+const ResultFilter = ({ queryParams }) => {
   const [amenities, setAmenities] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const getAmenities = () => {
@@ -33,29 +30,20 @@ const ResultFilter = ({
     getAmenities();
   }, []);
 
-  useEffect(() => {
-    setIsLoading(true);
-    axios({
-      method: "get",
-      url: `http://localhost:3001/api/stay/hotel`,
-      params: params,
-    })
-      .then((result) => {
-        setHotelData([...result.data]);
-      })
-      .catch((err) => console.error(err));
-    setIsLoading(false);
-  }, [params]);
-
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   const handleSelectValue = async (value) => {
-    setParams({ ...params, amenities: value });
+    setSearchParams({ ...queryParams, amenities: value });
   };
+
   const handleSliderChange = (value) => {
-    setParams({ ...params, priceFilter: value });
+    setSearchParams({
+      ...queryParams,
+      minPriceFilter: value[0],
+      maxPriceFilter: value[1],
+    });
   };
 
   return (

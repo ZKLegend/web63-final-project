@@ -15,7 +15,6 @@ const roomSchema = new mongoose.Schema({
         checkOut: { type: Date },
       },
     ],
-    default: undefined,
   },
   hotel: mongoose.Schema.Types.ObjectId,
 });

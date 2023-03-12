@@ -14,26 +14,44 @@ const HotelListing = ({ params, setParams }) => {
   const [hotelData, setHotelData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [queryParams, setQueryParams] = useState({});
 
+  // Get Query Params from URL
+  useEffect(() => {
+    const resOption2 = searchParams.getAll("amenities");
+
+    if (resOption2 !== undefined && resOption2.length > 0) {
+      setQueryParams({
+        ...Object.fromEntries([...searchParams]),
+        amenities: resOption2,
+      });
+    } else {
+      setQueryParams(Object.fromEntries([...searchParams]));
+    }
+  }, [searchParams]);
+
+  // Call API Get Hotel Data in first render
   useEffect(() => {
     const getHotelData = () => {
-      setIsLoading(true);
-      axios({
-        method: "get",
-        url: `http://localhost:3001/api/stay/hotel`,
-        params: params,
-      })
-        .then((result) => {
-          setHotelData([...result.data]);
+      if (Object.keys(queryParams).length !== 0) {
+        setIsLoading(true);
+        axios({
+          method: "get",
+          url: `http://localhost:3001/api/stay/room`,
+          params: queryParams,
         })
-        .catch((err) => console.error(err));
+          .then((result) => {
+            console.log(result);
+            setHotelData([...result.data]);
+          })
+          .catch((err) => console.error(err));
 
-      setIsLoading(false);
+        setIsLoading(false);
+      }
     };
     getHotelData();
-  }, []);
-
-  console.log("Params in Listing Page: ", params);
+  }, [queryParams]);
+  console.log("Hotel Data:", hotelData);
   return (
     <div className="hotel-listing">
       {/* Search Bar Section */}
@@ -46,12 +64,7 @@ const HotelListing = ({ params, setParams }) => {
       <Row style={{ marginTop: "32px" }}>
         {/* Filter Component */}
         <Col style={{ width: "343px" }}>
-          <ResultFilter
-            params={params}
-            setParams={setParams}
-            setHotelData={setHotelData}
-            setIsLoading={setIsLoading}
-          />
+          <ResultFilter queryParams={queryParams} />
         </Col>
         <Col
           style={{ display: "flex", justifyContent: "center", width: "48px" }}
@@ -63,14 +76,9 @@ const HotelListing = ({ params, setParams }) => {
         {/* Search Result Component */}
         <Col style={{ width: "840px" }}>
           <SearchResult
+            queryParams={queryParams}
             hotelData={hotelData}
-            setHotelData={setHotelData}
             isLoading={isLoading}
-            setIsLoading={setIsLoading}
-            searchParams={searchParams}
-            setSearchParams={setSearchParams}
-            params={params}
-            setParams={setParams}
           />
         </Col>
       </Row>
