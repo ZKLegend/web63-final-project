@@ -85,7 +85,6 @@ router.put("/:id", async (req, res) => {
 
 // Get Hotel Data Detail with Hotel ID
 router.get("/:hotelId", async (req, res) => {
-  const result = {};
   const hotel = await Hotel.aggregate([
     { $match: { _id: mongoose.Types.ObjectId(req.params.hotelId) } },
   ]).lookup({
@@ -101,9 +100,8 @@ router.get("/:hotelId", async (req, res) => {
       },
     ],
   });
-  Object.assign(result, hotel[0]);
 
-  res.send(result);
+  res.send(hotel[0]);
 });
 
 module.exports = router;
