@@ -7,6 +7,9 @@ import HotelListing from "./pages/HotelListing/HotelListing";
 import HotelDetail from "./pages/HotelDetail/HotelDetail";
 import BookingDetail from "./pages/BookingDetail/BookingDetail";
 import BookingComplete from "./pages/BookingDetail/components/BookingComplete";
+import Home from "./pages/Home/Home";
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   const [params, setParams] = useState({
@@ -20,19 +23,17 @@ const App = () => {
   return (
     <div className="app">
       {/* Header Section */}
-      <div className="header" style={{ height: "87px" }}>
-        Header
-        <Link to="/">HomePage</Link>
-        <Link to="/hotel-listing">Hotel Listing</Link>
-        <Link to="/booking-detail">Booking Detail</Link>
+      <div className="header">
+        <Header />
       </div>
 
       {/* Content Section */}
 
       <div className="content">
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route
-            path="/"
+            path="/hotel-search"
             element={<HotelSearch params={params} setParams={setParams} />}
           />
           <Route
@@ -41,15 +42,15 @@ const App = () => {
           />
 
           <Route path="/hotel-detail/:hotelId" element={<HotelDetail />} />
-          {/* <Route path="/hotel-detail" element={<HotelDetail />} /> */}
+
           <Route path="/booking-detail/" element={<BookingDetail />} />
           <Route path="/booking-complete" element={<BookingComplete />} />
         </Routes>
       </div>
 
       {/* Footer Section */}
-      <div className="footer" style={{ height: "573px" }}>
-        Footer
+      <div className="footer">
+        <Footer />
       </div>
     </div>
   );

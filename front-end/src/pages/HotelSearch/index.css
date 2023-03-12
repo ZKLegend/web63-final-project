@@ -1,5 +1,6 @@
 .hotel-search {
   padding: 0 104px;
+  height: 100%;
 }
 
 .price-border-box {
@@ -12,4 +13,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.flight-into-travel {
+  max-height: 100%;
 }

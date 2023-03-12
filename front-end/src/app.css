@@ -3,12 +3,15 @@
 }
 
 body {
-  width: 1440px;
-  margin: auto;
+  height: 100%;
+  margin: 0;
 }
+
 
 .content {
   background-color: #fafafa;
+  width: 1440px;
+  margin: auto;
 }
 
 .content-border-box {
