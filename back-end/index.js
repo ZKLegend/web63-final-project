@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const cors = require("cors");
+const dotenv = require("dotenv");
 const express = require("express");
-const app = express();
 
 const amenity = require("./routes/stay/amenity");
 const stayCategory = require("./routes/stay/category");
@@ -9,6 +9,10 @@ const image = require("./routes/image");
 const room = require("./routes/stay/room");
 const hotel = require("./routes/stay/hotel");
 const destination = require("./routes/stay/destination");
+const authR = require("./routes/auth");
+
+const app = express();
+dotenv.config();
 
 mongoose
   .connect(
@@ -28,6 +32,7 @@ app.use("/api/stay/category", stayCategory);
 app.use("/api/stay/room", room);
 app.use("/api/stay/hotel", hotel);
 app.use("/api/stay/destination", destination);
+app.use("/auth", authR);
 
 const port = 3001;
 app.listen(port, () => {

@@ -23,7 +23,7 @@ import {
 export const loginUser = async (user, dispatch, navigate) => {
   dispatch(loginStart());
   try {
-    const res = await axios.post("/auth/login", user);
+    const res = await axios.post("http://localhost:3001/auth/login", user);
     dispatch(loginSuccess(res.data));
     navigate("/");
   } catch (err) {
@@ -34,7 +34,7 @@ export const loginUser = async (user, dispatch, navigate) => {
 export const registerUser = async (user, dispatch, navigate) => {
   dispatch(registerStart());
   try {
-    await axios.post("/auth/register", user);
+    await axios.post("http://localhost:3001/auth/register", user);
     dispatch(registerSuccess());
     navigate("/login");
   } catch (err) {

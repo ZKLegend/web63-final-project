@@ -1,14 +1,17 @@
 import "./AccountInfo.css";
-
+import { useSelector } from "react-redux";
 const AccountInfo = () => {
+  const userr = useSelector((state) => state.auth.login.currentUser);
+
   const user = {
-    userName: "Naruto",
-    email: "naruto@gmail.com",
+    userName: userr.username,
+    email: userr.email,
     passWord: "********",
-    phoneNumber: "0123456",
-    address: "konoha",
+    phoneNumber: userr.phonenumber,
+    address: userr.address,
     birth: "02-01-1990",
   };
+  console.log(userr);
   return (
     <div className="AccountInfo">
       <h1 className="trade-gothic-lt-extended-bold-32px">Account</h1>
