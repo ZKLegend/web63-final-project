@@ -1,85 +1,84 @@
-.Footer {
+.subcribe {
+  margin-top: 120px;
   position: relative;
-   
-    margin-top: 270px;
-    font-family: "Montserrat";
-  }
-  .subcribe {
-    padding: 0px 24px;
-   margin: auto;
-    height: 305px;
-  width: 1440px;
-    background: #cdeae1;
-    /* Cards Shadow */
-  
-    box-shadow: 0px 4px 16px rgba(17, 34, 17, 0.05);
-    border-radius: 20px;
-   
-  
-    display: flex;
-    justify-content: space-between;
-  }
-  .img-subcribe {
-    object-fit: cover;
-  }
-  .text-subcribe {
-    width: 593px;
-  }
-  .input-sucribe {
-    display: flex;
-    justify-content: flex-start;
-    column-gap: 10px;
-  }
-  .input {
-    width: 380px;
-    height: 50px;
-    border-radius: 4px;
-    padding: 8px;
-    border-style: none;
-  }
-  .button-subcribe {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
-  
-    width: 85px;
-    height: 50px;
-  
-    /* Blackish Green */
-  
-    background: #112211;
-    border-radius: 4px;
-    color: white;
-  }
-  .button-subcribe:hover {
-    cursor: pointer;
-  }
-  .contact {
-    height: 422px;
-    background: #8dd3bb;
+  top: 150px;
+  padding: 0px 24px;
+  margin: 0 104px;
+  /* margin: auto;
+  height: 305px;
+  width: 1440px; */
+  background: #cdeae1;
+  /* Cards Shadow */
 
-    
-    margin: auto;
-   
-    display: flex;
-   justify-content: space-between;
-    padding: 0 104px;
-  }
+  box-shadow: 0px 4px 16px rgba(17, 34, 17, 0.05);
+  border-radius: 20px;
 
-  
+  display: flex;
+  justify-content: space-between;
+}
+.img-subcribe {
+  object-fit: cover;
+}
+.text-subcribe {
+  width: 593px;
+}
+.input-sucribe {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 10px;
+}
+.input {
+  width: 380px;
+  height: 56px;
+  border-radius: 4px;
+  padding: 8px;
+  border-style: none;
+}
+.button-subcribe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 20px;
 
-  
-  .social-contact {
+  width: 104px;
+  height: 56px;
 
-    margin-right: 90px;
-  }
+  /* Blackish Green */
 
-  
-  .social-icons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
+  background: #112211;
+  border-radius: 4px;
+  color: white;
+}
+.button-subcribe:hover {
+  cursor: pointer;
+}
+.contact {
+  background: #8dd3bb;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 218px 104px 64px 104px;
+}
+
+.social-contact {
+  margin-right: 90px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.text-contact > p {
+  font-family: "MontserratMedium";
+  color: #112211;
+}
+
+.text-contact > h3 {
+  font-family: "TradeGothicLTExtendedBold";
+  font-size: 16px;
+  line-height: 20px;
+  color: #112211;
+}

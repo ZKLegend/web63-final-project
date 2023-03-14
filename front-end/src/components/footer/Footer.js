@@ -9,18 +9,23 @@ const Footer = () => {
       <div className="footer-content">
         <div className="subcribe">
           <div className="text-subcribe">
-            <h1 style={{ fontSize: "40px", width: "30px" }}>
+            <h1 className="trade-gothic-lt-extended-bold-44px">
               Subscribe Newsletter
             </h1>
-            <h4 style={{ marginBottom: "0" }}>The Travel</h4>
-            <p style={{ color: "gray" }}>
+            <h4 className="trade-gothic-lt-extended-bold-20px">The Travel</h4>
+            <p className="montserrat-medium-16px" style={{ color: "gray" }}>
               Get inspired! Receive travel discounts, tips and behind the scenes
               stories.
             </p>
             <div className="input-sucribe">
               <input placeholder="Your email address" className="input"></input>
               <div className="button-subcribe">
-                <>Subscribe</>
+                <span
+                  className="montserrat-semibold"
+                  style={{ color: "white" }}
+                >
+                  Subscribe
+                </span>
               </div>
             </div>
           </div>

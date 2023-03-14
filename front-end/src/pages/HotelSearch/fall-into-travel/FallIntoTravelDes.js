@@ -23,10 +23,10 @@ const FallIntoTravelDes = () => {
         <Col span={12}>
           <Button
             size="large"
-            className="flex-space-between-align-center"
+            className="flex-space-between-align-center medium-button"
             style={{ marginLeft: "auto" }}
           >
-            <Text className="montserrat-medium">See All</Text>
+            <Text className="montserrat-medium ">See All</Text>
           </Button>
         </Col>
       </Row>
