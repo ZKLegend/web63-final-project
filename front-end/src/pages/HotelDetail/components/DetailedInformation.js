@@ -36,7 +36,7 @@ const hotelFeatures = [
 const { Text, Paragraph } = Typography;
 const { TextArea } = Input;
 
-const DetailedInformation = ({ hotelDetail, isLoading }) => {
+const DetailedInformation = ({ hotelDetail }) => {
   const isLogin = useSelector((state) => state.login.isLogin);
   console.log(isLogin);
   const params = useParams();

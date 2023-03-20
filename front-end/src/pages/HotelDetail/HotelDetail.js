@@ -4,6 +4,8 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Row, Col, Divider } from "antd";
+import { setIsLoading } from "../../redux/isLoadingSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 import GeneralInformation from "./components/GeneralInformation";
 import DetailedInformation from "./components/DetailedInformation";
@@ -11,18 +13,20 @@ import DetailedInformation from "./components/DetailedInformation";
 import "./index.css";
 
 const HotelDetail = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const isLoading = useSelector((state) => state.isLoading);
+  const dispatch = useDispatch();
+  // const [isLoading, setIsLoading] = useState(false);
   const [hotelDetail, setHotelDetail] = useState({});
   const urlParams = useParams();
   useEffect(() => {
-    setIsLoading(true);
+    dispatch(setIsLoading());
     axios
       .get(`http://localhost:3001/api/stay/hotel/${urlParams.hotelId}`)
       .then((result) => {
         setHotelDetail(result.data);
       })
       .catch((err) => console.error(err));
-    setIsLoading(false);
+    dispatch(setIsLoading());
   }, []);
 
   return (
@@ -38,10 +42,7 @@ const HotelDetail = () => {
           <Row>
             <Col span={24}>
               {" "}
-              <GeneralInformation
-                hotelDetail={hotelDetail}
-                isLoading={isLoading}
-              />
+              <GeneralInformation hotelDetail={hotelDetail} />
             </Col>
           </Row>
           {/* Divider */}
@@ -51,10 +52,7 @@ const HotelDetail = () => {
             </Col>
           </Row>
           {/* Hotel Detail Infomartion Section */}
-          <DetailedInformation
-            hotelDetail={hotelDetail}
-            isLoading={isLoading}
-          />
+          <DetailedInformation hotelDetail={hotelDetail} />
         </>
       )}
     </div>

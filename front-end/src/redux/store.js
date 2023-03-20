@@ -3,6 +3,10 @@ import filterSlice from "./filterSlice";
 import selecterSlice from "./selecterSlice";
 import sorterSlice from "./sorterSlice";
 import loginSlice from "./loginSlice";
+import paramsReducer from "./paramsSlice";
+import isLoadingReducer from "./isLoadingSlice";
+import hotelDataSlice from "./hotelDataSlice";
+import loginSlice from "./loginSlice";
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -20,6 +24,10 @@ export const store = configureStore({
     sorter: sorterSlice,
     selecter: selecterSlice,
     filter: filterSlice,
+    login: loginSlice,
+    params: paramsReducer,
+    isLoading: isLoadingReducer,
+    hotelData: hotelDataSlice,
     login: loginSlice,
   },
 });
