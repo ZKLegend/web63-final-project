@@ -15,6 +15,7 @@ const Header = () => {
   const isLogin = useSelector((state) => state.login.isLogin);
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
     dispatch(setIsLogin(false));
     navigate("/");
   };

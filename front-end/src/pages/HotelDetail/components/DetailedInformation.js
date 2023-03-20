@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   Row,
   Col,
@@ -7,96 +9,22 @@ import {
   Avatar,
   Pagination,
   Typography,
+  Input,
+  Rate,
+  Form,
 } from "antd";
 
 import {
   EnvironmentFilled,
   FlagFilled,
   LoadingOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import { StarFilled } from "../../../assets/icon-components/IconComponent";
 
 import hotelLocationMap from "../../../assets/images/hotel-location-map.png";
 
-import userAvatar1 from "../../../assets/images/user-avatar-1.png";
-import userAvatar2 from "../../../assets/images/user-avatar-2.png";
-import userAvatar3 from "../../../assets/images/user-avatar-3.png";
-import userAvatar4 from "../../../assets/images/user-avatar-4.png";
-import userAvatar5 from "../../../assets/images/user-avatar-5.png";
-
-const hotelReviews = [
-  {
-    username: "Omar Siphron",
-    reviewPoint: "5.0 Amazing",
-    reviewDetail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    userAvatar: userAvatar1,
-  },
-  {
-    username: "Cristofer Ekstrom Bothman",
-    reviewPoint: "4.0 Very good",
-    reviewDetail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    userAvatar: userAvatar2,
-  },
-  {
-    username: "Kaiya Lubin",
-    reviewPoint: "3.0 Normal",
-    reviewDetail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    userAvatar: userAvatar3,
-  },
-  {
-    username: "Erin Septimus",
-    reviewPoint: "2.0 Bad",
-    reviewDetail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    userAvatar: userAvatar4,
-  },
-  {
-    username: "Terry George",
-    reviewPoint: "1.0 Very bad",
-    reviewDetail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    userAvatar: userAvatar5,
-  },
-  {
-    username: "Terry George",
-    reviewPoint: "1.0 Very bad",
-    reviewDetail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    userAvatar: userAvatar5,
-  },
-  {
-    username: "Erin Septimus",
-    reviewPoint: "2.0 Bad",
-    reviewDetail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    userAvatar: userAvatar4,
-  },
-
-  {
-    username: "Kaiya Lubin",
-    reviewPoint: "3.0 Normal",
-    reviewDetail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    userAvatar: userAvatar3,
-  },
-  {
-    username: "Cristofer Ekstrom Bothman",
-    reviewPoint: "4.0 Very good",
-    reviewDetail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    userAvatar: userAvatar2,
-  },
-  {
-    username: "Omar Siphron",
-    reviewPoint: "5.0 Amazing",
-    reviewDetail:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    userAvatar: userAvatar1,
-  },
-];
+import axios from "axios";
 
 const hotelFeatures = [
   "Near park",
@@ -106,10 +34,33 @@ const hotelFeatures = [
 ];
 
 const { Text, Paragraph } = Typography;
+const { TextArea } = Input;
 
 const DetailedInformation = ({ hotelDetail, isLoading }) => {
+  const isLogin = useSelector((state) => state.login.isLogin);
+  console.log(isLogin);
+  const params = useParams();
+  const [form] = Form.useForm();
+  const [reviews, setReviews] = useState([]);
   const [amenityLength, setAmenityLength] = useState(4);
-  const [currentData, setCurrentData] = useState(hotelReviews.slice(0, 5));
+  const [currentData, setCurrentData] = useState(reviews.slice(0, 5));
+  const [isShow, setIsShow] = useState(false);
+
+  useEffect(() => {
+    const getReviews = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/api/review/${params.hotelId}`
+        );
+        if (response.status === 200 && response.data)
+          setReviews([...response.data]);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getReviews();
+  }, []);
+  console.log("Reviews:", reviews);
   const showMoreAmenities = () => {
     setAmenityLength(hotelDetail.amenities.length);
   };
@@ -117,12 +68,34 @@ const DetailedInformation = ({ hotelDetail, isLoading }) => {
     setAmenityLength(4);
   };
 
+  const showReviewBox = () => {
+    if (!isLogin) {
+      alert("Please Login First");
+    } else {
+      setIsShow(!isShow);
+    }
+  };
+
+  const submitReview = async (value) => {
+    try {
+      const token = localStorage.getItem("token");
+      let reqBody = { ...value };
+      const response = await axios.post(
+        `http://localhost:3001/api/review/${params.hotelId}`,
+        reqBody,
+        {
+          headers: { authToken: token },
+        }
+      );
+      form.resetFields();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handlePageChange = (page, pageSize) => {
     setCurrentData(
-      hotelReviews.slice(
-        (page - 1) * pageSize,
-        (page - 1) * pageSize + pageSize
-      )
+      reviews.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize)
     );
   };
   return (
@@ -395,10 +368,35 @@ const DetailedInformation = ({ hotelDetail, isLoading }) => {
         >
           <div className="flex-space-between-align-center">
             <Text className="trade-gothic-bold-20px">Reviews</Text>
-            <Button className="button-background-filled">
+            <Button
+              onClick={showReviewBox}
+              className="button-background-filled"
+            >
               <Text className="montserrat-semibold">Give your review</Text>
             </Button>
           </div>
+          {isShow ? (
+            <div className="flex-column">
+              <Form form={form} onFinish={submitReview} layout="vertical">
+                <Form.Item label="Rating:" name="reviewPoint">
+                  <Rate />
+                </Form.Item>
+                <Form.Item label="Your Review:" name="reviewContent">
+                  <TextArea placeholder="Please give your review" />
+                </Form.Item>
+                <Form.Item>
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="montserrat-regular button-background-filled "
+                    style={{ width: "20%" }}
+                  >
+                    Submit your Review
+                  </Button>
+                </Form.Item>
+              </Form>
+            </div>
+          ) : null}
 
           <div
             className="flex-align-center"
@@ -409,50 +407,46 @@ const DetailedInformation = ({ hotelDetail, isLoading }) => {
             <Text className="trade-gothic-lt-extended-bold-50px">4.2</Text>
             <div className="flex-column">
               <Text className="montserrat-semibold-20px">Very good</Text>
-              <Text className="montserrat-regular">371 verified reviews</Text>
+              <Text className="montserrat-regular">
+                {reviews.length} verified reviews
+              </Text>
             </div>
           </div>
 
           <Divider style={{ margin: "0" }} />
 
           {/* Review List */}
-          {currentData.map((element) => {
+          {reviews.map((element) => {
             return (
               <>
-                <Row gutter={16} justify="space-between" wrap={false}>
+                <Row align="middle" wrap={false}>
                   <Col>
-                    <div>
-                      {" "}
-                      <Avatar
-                        size={45}
-                        src={<img alt="avatar" src={element.userAvatar} />}
-                      />
-                    </div>
+                    {" "}
+                    <Avatar size={45} icon={<UserOutlined />} />
                   </Col>
                   <Col>
                     <div>
-                      <div>
-                        <Text className="montserrat-semibold">
-                          {element.reviewPoint}
-                        </Text>
+                      <Text className="montserrat-semibold">
+                        <Rate disabled defaultValue={element.reviewPoint} />
+                      </Text>
 
-                        <Divider type="vertical" />
-                        <Text className="montserrat-regular">
-                          {element.username}
-                        </Text>
-                      </div>
-                      <div>
-                        <Paragraph className="montserrat-regular">
-                          {element.reviewDetail}
-                        </Paragraph>
-                      </div>
+                      <Divider type="vertical" />
+                      <Text className="montserrat-regular">
+                        {element.userInfo.username}
+                      </Text>
+                    </div>
+                    <div>
+                      <Paragraph
+                        style={{ margin: "0 24px" }}
+                        className="montserrat-regular"
+                      >
+                        {element.reviewContent}
+                      </Paragraph>
                     </div>
                   </Col>
-                  <Col>
-                    <div>
-                      {" "}
-                      <FlagFilled style={{ fontSize: "20px" }} />
-                    </div>
+                  <Col style={{ marginLeft: "auto" }}>
+                    {" "}
+                    <FlagFilled style={{ fontSize: "20px" }} />
                   </Col>
                 </Row>
                 <Divider style={{ margin: "0" }} />
@@ -461,7 +455,7 @@ const DetailedInformation = ({ hotelDetail, isLoading }) => {
           })}
           <Pagination
             style={{ textAlign: "center" }}
-            total={10}
+            total={reviews.length}
             pageSize={5}
             defaultCurrent={1}
             onChange={handlePageChange}

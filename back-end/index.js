@@ -9,6 +9,8 @@ const image = require("./routes/image");
 const room = require("./routes/stay/room");
 const hotel = require("./routes/stay/hotel");
 const destination = require("./routes/stay/destination");
+const user = require("./routes/user");
+const review = require("./routes/review");
 
 mongoose
   .connect(
@@ -28,6 +30,8 @@ app.use("/api/stay/category", stayCategory);
 app.use("/api/stay/room", room);
 app.use("/api/stay/hotel", hotel);
 app.use("/api/stay/destination", destination);
+app.use("/api/user", user);
+app.use("/api/review", review);
 
 const port = 3001;
 app.listen(port, () => {

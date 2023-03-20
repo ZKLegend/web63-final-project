@@ -12,7 +12,6 @@ const { Text } = Typography;
 const { Link } = Anchor;
 
 const GeneralInformation = ({ hotelDetail, isLoading }) => {
-  console.log(hotelDetail.roomInfo);
   return (
     <>
       {" "}
