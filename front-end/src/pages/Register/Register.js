@@ -1,23 +1,16 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { registerUser } from "../../redux/apiRequest";
-import { Row, Col } from "antd";
+import axios from "axios";
+import { Row, Col, DatePicker } from "antd";
 import { CustomLogo } from "../../assets/icon-components/IconComponent";
 import pic1 from "../../assets/images/pic1.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Button, Checkbox, Form, Input, Select } from "antd";
 import "./register.css";
 const Register = () => {
-  const { Option } = Select;
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [address, setAddress] = useState("");
-  const [phonenumber, setPhonenumber] = useState("");
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { Option } = Select;
+  const [birthday, setBirthday] = useState("");
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -41,15 +34,28 @@ const Register = () => {
       },
     },
   };
-  const handleRegister = (e) => {
-    const newUser = {
-      email: email,
-      password: password,
-      username: username,
-      address: address,
-      phonenumber: phonenumber,
-    };
-    registerUser(newUser, dispatch, navigate);
+  const handleBirthday = (date, dateString) => {
+    setBirthday(dateString);
+  };
+
+  const handleRegister = async (event) => {
+    try {
+      const data = {
+        ...event,
+        birthday: birthday,
+        phoneNumber: `${event.prefix}${event.phoneNumber}`,
+      };
+      const response = await axios.post(
+        `http://localhost:3001/api/user/register`,
+        data
+      );
+      console.log(response);
+      if (response.status === 200 && response.data) {
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
   const [form] = Form.useForm();
 
@@ -57,7 +63,6 @@ const Register = () => {
     <Form.Item name="prefix" noStyle>
       <Select style={{ width: 70 }}>
         <Option value="84">+84</Option>
-        <Option value="87">+87</Option>
       </Select>
     </Form.Item>
   );
@@ -68,7 +73,7 @@ const Register = () => {
           <img src={pic1} alt="err" style={{ display: "block" }} />
         </Col>
         <Col span={12}>
-          <CustomLogo />
+          <h3 className="trade-gothic-lt-extended-bold-40px">Register</h3>
           <Form
             {...formItemLayout}
             form={form}
@@ -78,18 +83,18 @@ const Register = () => {
             scrollToFirstError
           >
             <Form.Item
-              name="nickname"
+              name="username"
               label="Username"
               tooltip="What do you want others to call you?"
               rules={[
                 {
                   required: true,
-                  message: "Please input your nickname!",
+                  message: "Please input your Username!",
                   whitespace: true,
                 },
               ]}
             >
-              <Input onChange={(e) => setUsername(e.target.value)} />
+              <Input />
             </Form.Item>
 
             <Form.Item
@@ -106,7 +111,7 @@ const Register = () => {
                 },
               ]}
             >
-              <Input onChange={(e) => setEmail(e.target.value)} />
+              <Input />
             </Form.Item>
 
             <Form.Item
@@ -124,7 +129,7 @@ const Register = () => {
             </Form.Item>
 
             <Form.Item
-              name="confirm"
+              name="confirmPassword"
               label="Confirm Password"
               dependencies={["password"]}
               hasFeedback
@@ -147,21 +152,26 @@ const Register = () => {
                 }),
               ]}
             >
-              <Input.Password onChange={(e) => setPassword(e.target.value)} />
+              <Input.Password />
             </Form.Item>
 
             <Form.Item
-              name="phone"
+              name="phoneNumber"
               label="Phone Number"
               rules={[
                 { required: true, message: "Please input your phone number!" },
               ]}
             >
-              <Input
-                addonBefore={prefixSelector}
-                style={{ width: "100%" }}
-                onChange={(e) => setPhonenumber(e.target.value)}
-              />
+              <Input addonBefore={prefixSelector} style={{ width: "100%" }} />
+            </Form.Item>
+            <Form.Item
+              name="birthday"
+              label="Date of birth"
+              rules={[
+                { required: true, message: "Please input your date of birth" },
+              ]}
+            >
+              <DatePicker onChange={handleBirthday} style={{ width: "100%" }} />
             </Form.Item>
 
             <Form.Item
@@ -169,7 +179,7 @@ const Register = () => {
               label="Address"
               rules={[{ required: true, message: "Please input Intro" }]}
             >
-              <Input.TextArea onChange={(e) => setAddress(e.target.value)} />
+              <Input.TextArea />
             </Form.Item>
 
             <Form.Item
