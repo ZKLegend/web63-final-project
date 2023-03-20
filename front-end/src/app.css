@@ -3,6 +3,7 @@
 }
 
 body {
+  height: 100%;
   width: 1440px;
   margin: auto;
 }
@@ -90,6 +91,13 @@ body {
 .montserrat-semibold {
   font-family: "MontserratSemiBold";
   color: #112211;
+}
+
+.montserrat-semibold-12px {
+  font-family: "MontserratSemiBold";
+  color: #112211;
+  font-size: 12px;
+  line-height: 14px;
 }
 
 .montserrat-semibold-16px {
@@ -216,6 +224,13 @@ body {
   color: #112211;
 }
 
+.trade-gothic-lt-extended-bold-44px {
+  font-family: "TradeGothicLTExtendedBold";
+  font-size: 44px;
+  line-height: 54px;
+  color: #112211;
+}
+
 .trade-gothic-lt-extended-bold-50px {
   font-family: "TradeGothicLTExtendedBold";
   font-size: 50px;
@@ -281,10 +296,20 @@ body {
   border-radius: 4px;
 }
 
+.medium-button {
+  height: 40px;
+  border: 1px solid #8dd3bb;
+  border-radius: 4px;
+}
+
 .button-background-filled {
   height: 48px;
   background-color: #8dd3bb;
   border-radius: 4px;
+}
+
+.button-background-filled:hover {
+  background-color: #8dd3bb;
 }
 
 .button-for-icons {

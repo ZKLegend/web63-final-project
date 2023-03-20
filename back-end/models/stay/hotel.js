@@ -13,8 +13,8 @@ const hotelSchema = new mongoose.Schema({
   category: categorySchema,
   amenities: [amenitySchema],
   logo: imageSchema,
-  room: { type: [mongoose.Schema.Types.ObjectId], default: undefined },
-  review: { type: [mongoose.Schema.Types.ObjectId], default: undefined },
+  room: { type: [mongoose.Schema.Types.ObjectId] },
+  review: { type: [mongoose.Schema.Types.ObjectId] },
 });
 
 const Hotel = mongoose.model("Hotel", hotelSchema);

@@ -19,13 +19,13 @@ const { Text, Paragraph } = Typography;
 
 const FlightIntoTravel = () => {
   return (
-    <>
+    <div className="flight-into-travel">
       <Row justify="center">
         <Col span={24}>
           <FallIntoTravelDes />
         </Col>
         <Col span={24} style={{ marginTop: "20px" }}>
-          <Row style={{ height: "424px" }}>
+          <Row>
             <Col span={10}>
               <div
                 style={{
@@ -88,7 +88,7 @@ const FlightIntoTravel = () => {
           </Row>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

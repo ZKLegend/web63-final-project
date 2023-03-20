@@ -1,31 +1,39 @@
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { setIsLogin } from "../../redux/loginSlice";
 import { Row, Col } from "antd";
 import pic1 from "../../assets/images/pic1.png";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 
-import { CustomLogo } from "../../assets/icon-components/IconComponent";
-
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleLogin = (e) => {
-    const newUser = {
-      username: username,
-      password: password,
-    };
+  const handleLogin = async (event) => {
+    console.log(event);
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/api/user/login`,
+        event
+      );
+      console.log("Response from Login API:", response);
+      if (response.status === 200 && response.data) {
+        localStorage.setItem("token", response.data.token);
+        dispatch(setIsLogin(true));
+        navigate("/");
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
   return (
     <div className="Loginframe">
       <Row gutter={48}>
         <Col span={12}>
-          <CustomLogo />
           <h3 className="trade-gothic-lt-extended-bold-40px">Login</h3>
           <Form
             name="normal_login"

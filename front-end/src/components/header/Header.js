@@ -15,6 +15,7 @@ const Header = () => {
   const isLogin = useSelector((state) => state.login.isLogin);
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
     dispatch(setIsLogin(false));
     navigate("/");
   };
@@ -54,7 +55,7 @@ const Header = () => {
         </div>
         <div className="findStay">
           <BedIcon />
-          <Link to="/hotel-listing" className="montserrat-semibold link-style">
+          <Link to="/hotel-search" className="montserrat-semibold link-style">
             Find Stays
           </Link>
         </div>
