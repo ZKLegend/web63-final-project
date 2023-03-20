@@ -107,7 +107,7 @@ const hotelFeatures = [
 
 const { Text, Paragraph } = Typography;
 
-const DetailedInformation = ({ hotelDetail, isLoading }) => {
+const DetailedInformation = ({ hotelDetail }) => {
   const [amenityLength, setAmenityLength] = useState(4);
   const [currentData, setCurrentData] = useState(hotelReviews.slice(0, 5));
   const showMoreAmenities = () => {

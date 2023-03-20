@@ -3,6 +3,9 @@ import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import React from "react";
+import { setIsLoading } from "../../redux/isLoadingSlice";
+import { setHotelData } from "../../redux/hotelDataSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 import StaySearch from "../../components/search-tab/StaySearch";
 import ResultFilter from "./components/ResultFilter";
@@ -10,9 +13,8 @@ import SearchResult from "./components/SearchResult";
 
 import "./index.css";
 
-const HotelListing = ({ params, setParams }) => {
-  const [hotelData, setHotelData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+const HotelListing = () => {
+  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const [queryParams, setQueryParams] = useState({});
 
@@ -30,33 +32,31 @@ const HotelListing = ({ params, setParams }) => {
     }
   }, [searchParams]);
 
-  // Call API Get Hotel Data in first render
+  // Call API Get Hotel Data
   useEffect(() => {
     const getHotelData = () => {
       if (Object.keys(queryParams).length !== 0) {
-        setIsLoading(true);
+        dispatch(setIsLoading());
         axios({
           method: "get",
           url: `http://localhost:3001/api/stay/room`,
           params: queryParams,
         })
           .then((result) => {
-            console.log(result);
-            setHotelData([...result.data]);
+            dispatch(setHotelData(result.data));
           })
           .catch((err) => console.error(err));
-
-        setIsLoading(false);
+        dispatch(setIsLoading());
       }
     };
     getHotelData();
   }, [queryParams]);
-  console.log("Hotel Data:", hotelData);
+
   return (
     <div className="hotel-listing">
       {/* Search Bar Section */}
       <div className="search-box-container">
-        <StaySearch params={params} setParams={setParams} />
+        <StaySearch />
       </div>
 
       {/* End Search Bar */}
@@ -75,11 +75,7 @@ const HotelListing = ({ params, setParams }) => {
 
         {/* Search Result Component */}
         <Col style={{ width: "840px" }}>
-          <SearchResult
-            queryParams={queryParams}
-            hotelData={hotelData}
-            isLoading={isLoading}
-          />
+          <SearchResult queryParams={queryParams} />
         </Col>
       </Row>
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   Row,
@@ -43,7 +44,8 @@ const dropdownItems = [
 ];
 
 // Main Search Result Component
-const SearchResult = ({ hotelData, isLoading, queryParams }) => {
+const SearchResult = ({ queryParams }) => {
+  const isLoading = useSelector((state) => state.isLoading);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleTabChange = (key) => {
@@ -78,13 +80,7 @@ const SearchResult = ({ hotelData, isLoading, queryParams }) => {
                         <Text className="montserrat-semibold-16px">Hotels</Text>
                       </div>
                     ),
-                    children: (
-                      <SearchResultItem
-                        hotelData={hotelData}
-                        isLoading={isLoading}
-                        queryParams={queryParams}
-                      />
-                    ),
+                    children: <SearchResultItem queryParams={queryParams} />,
                   },
                   {
                     key: "Motels",
@@ -93,13 +89,7 @@ const SearchResult = ({ hotelData, isLoading, queryParams }) => {
                         <Text className="montserrat-semibold-16px">Motels</Text>
                       </div>
                     ),
-                    children: (
-                      <SearchResultItem
-                        hotelData={hotelData}
-                        isLoading={isLoading}
-                        queryParams={queryParams}
-                      />
-                    ),
+                    children: <SearchResultItem queryParams={queryParams} />,
                   },
                   {
                     key: "Resorts",
@@ -110,13 +100,7 @@ const SearchResult = ({ hotelData, isLoading, queryParams }) => {
                         </Text>
                       </div>
                     ),
-                    children: (
-                      <SearchResultItem
-                        hotelData={hotelData}
-                        isLoading={isLoading}
-                        queryParams={queryParams}
-                      />
-                    ),
+                    children: <SearchResultItem queryParams={queryParams} />,
                   },
                 ]}
               />
@@ -129,7 +113,9 @@ const SearchResult = ({ hotelData, isLoading, queryParams }) => {
 };
 
 // Search Result Item mini component for Search Result
-function SearchResultItem({ hotelData, isLoading, queryParams }) {
+function SearchResultItem({ queryParams }) {
+  const hotelData = useSelector((state) => state.hotelData);
+  const isLoading = useSelector((state) => state.isLoading);
   const [searchParams, setSearchParams] = useSearchParams();
   const handlePageChange = async (pageIndex, pageSize) => {
     setSearchParams({ ...queryParams, pageIndex, pageSize });

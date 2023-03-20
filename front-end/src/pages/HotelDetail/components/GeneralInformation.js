@@ -1,5 +1,6 @@
 import React from "react";
 import { Row, Col, Button, Typography, Rate, Breadcrumb, Anchor } from "antd";
+import { useSelector } from "react-redux";
 
 import {
   HeartOutlined,
@@ -11,7 +12,8 @@ import {
 const { Text } = Typography;
 const { Link } = Anchor;
 
-const GeneralInformation = ({ hotelDetail, isLoading }) => {
+const GeneralInformation = ({ hotelDetail }) => {
+  const isLoading = useSelector((state) => state.isLoading);
   console.log(hotelDetail.roomInfo);
   return (
     <>
