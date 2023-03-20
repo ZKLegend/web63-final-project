@@ -12,8 +12,6 @@ import { Button, Checkbox, Form, Input } from "antd";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
 
   const handleLogin = async (event) => {
     console.log(event);

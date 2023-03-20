@@ -1,5 +1,12 @@
 import React from "react";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setCountRoom,
+  setCountGuest,
+  setDate,
+  setDestination,
+} from "../../redux/paramsSlice";
 import { useState, useEffect } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
 import { Button, Row, Col, DatePicker, Select, InputNumber } from "antd";
@@ -9,11 +16,9 @@ import { BuildingIcon } from "../../assets/icon-components/IconComponent";
 
 const { RangePicker } = DatePicker;
 
-const StaySearch = ({ params, setParams }) => {
-  const [countRoom, setCountRoom] = useState(0);
-  const [countGuest, setCountGuest] = useState(0);
-  const [destination, setDestination] = useState("");
-  const [bookDate, setBookDate] = useState([]);
+const StaySearch = () => {
+  const params = useSelector((state) => state.params);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // Listing Destination Options in Search Bar
@@ -32,26 +37,18 @@ const StaySearch = ({ params, setParams }) => {
   }, []);
 
   const getRoomNumber = (value) => {
-    setCountRoom(value);
-    setParams({ ...params, countRoom: value });
+    dispatch(setCountRoom(value));
   };
 
   const getGuestNumber = (value) => {
-    setCountGuest(value);
-    setParams({ ...params, countGuest: value });
+    dispatch(setCountGuest(value));
   };
 
   const selectDate = (date, dateString) => {
-    setParams({
-      ...params,
-      checkIn: dateString[0],
-      checkOut: dateString[1],
-    });
-    // setBookDate(...bookDate, dateString);
+    dispatch(setDate({ checkIn: dateString[0], checkOut: dateString[1] }));
   };
   const selectDestination = (value) => {
-    setParams({ ...params, destination: value });
-    // setDestination(value);
+    dispatch(setDestination(value));
   };
 
   const handleSearch = () => {
@@ -73,10 +70,11 @@ const StaySearch = ({ params, setParams }) => {
             <span className="label-text">Enter Destination</span>
             <Select
               onSelect={selectDestination}
+              value={params.destination ? params.destination : null}
               size="large"
               style={{ width: "100%" }}
               showSearch
-              placeholder={"Hanoi"}
+              placeholder="Hanoi"
               options={destinationOptions}
               filterOption={(input, option) =>
                 (option?.label ?? "")
@@ -101,9 +99,9 @@ const StaySearch = ({ params, setParams }) => {
           <div style={{ position: "relative" }}>
             <span className="label-text">Rooms</span>
             <InputNumber
-              value={countRoom}
+              value={params.countRoom ? params.countRoom : null}
               min={0}
-              defaultValue={countRoom}
+              defaultValue={0}
               size="large"
               style={{ width: "100%" }}
               onChange={getRoomNumber}
@@ -115,9 +113,9 @@ const StaySearch = ({ params, setParams }) => {
           <div style={{ position: "relative" }}>
             <span className="label-text">Guest</span>
             <InputNumber
-              value={countGuest}
-              min={countRoom}
-              defaultValue={countGuest}
+              value={params.countGuest ? params.countGuest : null}
+              min={params.countRoom ? params.countRoom : 0}
+              defaultValue={0}
               size="large"
               style={{ width: "100%" }}
               onChange={getGuestNumber}

@@ -12,7 +12,7 @@ import "./index.css";
 
 const { Text } = Typography;
 
-const HotelSearch = ({ params, setParams }) => {
+const HotelSearch = () => {
   return (
     <div>
       {/* Poster Section */}

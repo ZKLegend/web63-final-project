@@ -1,10 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
+import paramsReducer from "./paramsSlice";
+import isLoadingReducer from "./isLoadingSlice";
+import hotelDataSlice from "./hotelDataSlice";
+import loginSlice from "./loginSlice";
 import filterSlice from "./filterSlice";
 import selecterSlice from "./selecterSlice";
 import sorterSlice from "./sorterSlice";
 import loginSlice from "./loginSlice";
 
-export const store = configureStore({
+const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -17,13 +21,14 @@ export const store = configureStore({
       },
     }),
   reducer: {
+    params: paramsReducer,
+    isLoading: isLoadingReducer,
+    hotelData: hotelDataSlice,
+    login: loginSlice,
     sorter: sorterSlice,
     selecter: selecterSlice,
     filter: filterSlice,
-    login: loginSlice,
   },
 });
-// selector dung o component se lam thay dong lenh nay: store.getState().sorter.value --> useSelector((state) => state.sorter.value)
-//selector se lay dc current state dang luu o store --> tac dung nhu state o hook
-//dispatch se lam thay cong viec cua setState bang cach day gia tri ve reducer de thay vao state cu duoi dang action.payload
-//key cua store se dung o selector
+
+export default store;

@@ -1,5 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
+
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Row, Col, DatePicker } from "antd";
 import { CustomLogo } from "../../assets/icon-components/IconComponent";
 import pic1 from "../../assets/images/pic1.png";
@@ -8,9 +11,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Input, Select } from "antd";
 import "./register.css";
 const Register = () => {
-  const navigate = useNavigate();
   const { Option } = Select;
+
   const [birthday, setBirthday] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
