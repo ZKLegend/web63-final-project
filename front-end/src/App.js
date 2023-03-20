@@ -1,5 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
+import { setIsLogin } from "./redux/loginSlice";
+import { useDispatch } from "react-redux";
 
 import HotelSearch from "./pages/HotelSearch/HotelSearch";
 import HotelListing from "./pages/HotelListing/HotelListing";
@@ -18,6 +20,12 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 
 const App = () => {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  if (token) {
+    dispatch(setIsLogin(true));
+  }
+
   return (
     <div className="app">
       {/* Header Section */}
