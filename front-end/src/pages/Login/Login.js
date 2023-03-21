@@ -1,7 +1,6 @@
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setIsLogin } from "../../redux/loginSlice";
 import { Row, Col } from "antd";
@@ -12,8 +11,6 @@ import { Button, Checkbox, Form, Input } from "antd";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
 
   const handleLogin = async (event) => {
     console.log(event);

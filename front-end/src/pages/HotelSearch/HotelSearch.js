@@ -45,7 +45,7 @@ const HotelSearch = () => {
       <div className="hotel-search" style={{ position: "relative" }}>
         {/* Content Section */}
         <div className="hotel-search-content">
-          <SearchTab params={params} setParams={setParams} />
+          <SearchTab />
           <Row gutter={[0, 80]}>
             <Col span={24} style={{ width: "100%" }}>
               <RecentSearch />

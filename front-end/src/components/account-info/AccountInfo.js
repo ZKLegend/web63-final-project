@@ -1,19 +1,4 @@
 import "./AccountInfo.css";
-<<<<<<< refs/remotes/origin/main
-import { useSelector } from "react-redux";
-const AccountInfo = () => {
-  const userr = useSelector((state) => state.auth.login.currentUser);
-
-  const user = {
-    userName: userr.username,
-    email: userr.email,
-    passWord: "********",
-    phoneNumber: userr.phonenumber,
-    address: userr.address,
-    birth: "02-01-1990",
-  };
-  console.log(userr);
-=======
 import axios from "axios";
 import { EditFilled } from "@ant-design/icons";
 import { useEffect, useState } from "react";
@@ -38,7 +23,6 @@ const AccountInfo = () => {
     getUserInfo();
   }, []);
 
->>>>>>> Update
   return (
     <div className="AccountInfo">
       <h1 className="trade-gothic-lt-extended-bold-32px">Account</h1>

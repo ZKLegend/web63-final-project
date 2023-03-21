@@ -6,7 +6,6 @@ import loginSlice from "./loginSlice";
 import paramsReducer from "./paramsSlice";
 import isLoadingReducer from "./isLoadingSlice";
 import hotelDataSlice from "./hotelDataSlice";
-import loginSlice from "./loginSlice";
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
@@ -28,7 +27,6 @@ export const store = configureStore({
     params: paramsReducer,
     isLoading: isLoadingReducer,
     hotelData: hotelDataSlice,
-    login: loginSlice,
   },
 });
 // selector dung o component se lam thay dong lenh nay: store.getState().sorter.value --> useSelector((state) => state.sorter.value)

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const express = require("express");
+const app = express();
 
 const amenity = require("./routes/stay/amenity");
 const stayCategory = require("./routes/stay/category");
