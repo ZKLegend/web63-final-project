@@ -81,7 +81,7 @@ const HomeSearchBar = () => {
   return (
     <div className="HomeSearchBar">
       <Tabs
-        defaultActiveKey="1"
+        defaultActiveKey="2"
         items={items}
         onChange={onChange}
         tabBarGutter="50px"
